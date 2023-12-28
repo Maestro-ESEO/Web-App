@@ -14,9 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TaskController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/profile', [UserController::class, 'show']);
+Route::get('/task', [TaskController::class, 'show']);
