@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Project;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Task;
 
@@ -42,7 +43,7 @@ class TaskFactory extends Factory
             'deadline'=> fake()->dateTimeBetween('now','+3 months'),
             'status' => fake()->numberBetween(0,3),
             'priority' => fake()->numberBetween(0,2),
-            'project_id'=> fake()->numberBetween(0,100)
+            'project_id'=> Project::all()->random()->id
         ];
     }
 }
