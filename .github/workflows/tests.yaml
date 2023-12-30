@@ -23,9 +23,6 @@ jobs:
       - name: Install dependencies
         run: composer install --no-interaction
 
-      - name: Create environment file
-        run: cp .env.example .env
-
       - name: Generate application key
         run: php artisan key:generate
 
