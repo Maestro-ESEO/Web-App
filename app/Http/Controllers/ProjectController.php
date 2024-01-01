@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\UserProject;
+use App\Models\User;
 
 class ProjectController extends Controller
 {
@@ -61,6 +63,16 @@ class ProjectController extends Controller
         $project->save();
 
         return $project;
+    }
+
+    public static function is_admin(Project $project, User $user): bool
+    {
+        $taskProject = UserProject::where('project_id', $project->id)
+            ->where('user_id', $user->id)
+            ->where('is_admin', true);
+
+        return (bool) count($taskProject);
+
     }
 
 }
