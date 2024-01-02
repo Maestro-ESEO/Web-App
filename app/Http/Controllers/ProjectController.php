@@ -19,8 +19,6 @@ class ProjectController extends Controller
             'start_date' => 'date|nullable',
             'end_date' => 'date|nullable'
         ]);
-
-        Auth::user()->id;
         
         $project = new Project();
         $project->title = $request->title;

@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
-use Auth;
 use App\Models\Project;
-use App\Models\User;
-
+use AuthUtil;
 
 class TaskController extends Controller
 {
@@ -37,7 +35,7 @@ class TaskController extends Controller
         $task->priority = $request->priority;
         $task->project_id = $request->project_id;
         // User admin of the project ?
-        $is_admin = ProjectController::is_admin(Project::find($request->project_id), Auth::user());
+        $is_admin = ProjectController::is_admin(Project::find($request->project_id), AuthUtil::getAuthUser());
         if($is_admin != true){
             abort(404, "The user is not an administrator");
         }

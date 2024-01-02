@@ -22,7 +22,7 @@ class PostTaskControllerTest extends TestCase
         $taskPostController = new TaskController();
         $userProject = fake()->randomElement(UserProject::where("is_admin", true)->get());
         $user = User::find($userProject->user_id);
-        $this->actingAs($user); 
+        $this->actingAs($user);
 
         //Creation de la requête
         $requestData = [
@@ -52,8 +52,8 @@ class PostTaskControllerTest extends TestCase
     /**
      * Teste la levée d'erreur, si le créateur de la tâche n'est pas administrateur du projet
      */
-    public function test_create_task_member_project(){
-
+    public function test_create_task_member_project()
+    {
         $taskPostController = new TaskController();
         $userProject = fake()->randomElement(UserProject::where("is_admin", false)->get());
         $user = User::find($userProject->user_id);
