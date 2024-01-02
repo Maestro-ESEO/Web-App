@@ -5,6 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\User;
 use App\Models\Project;
+use App\Models\UserProject;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\UserProject>
@@ -18,9 +19,21 @@ class UserProjectFactory extends Factory
      */
     public function definition(): array
     {
+        $user_id = null;
+        $project_id = null;
+
+        while (true) {
+            $user_id = fake()->randomElement(User::all())->id;
+            $project_id = fake()->randomElement(Project::all())->id;
+
+            if (!UserProject::where("user_id", $user_id)->where("project_id", $project_id)->exists()) {
+                break;
+            }
+        }
+
         return [
-            "user_id" => fake()->randomElement(User::all())->id,
-            "project_id" => fake()->randomElement(Project::all())->id,
+            "user_id" => $user_id,
+            "project_id" => $project_id,
             "is_admin" => fake()->boolean(50),
         ];
     }
