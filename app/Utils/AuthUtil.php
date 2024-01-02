@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Utils;
+
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,6 +12,5 @@ class AuthUtil {
         $user = Auth::user();
         return $user;
     }
-
 
 }
