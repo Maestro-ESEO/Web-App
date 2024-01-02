@@ -69,7 +69,8 @@ class ProjectController extends Controller
     {
         $taskProject = UserProject::where('project_id', $project->id)
             ->where('user_id', $user->id)
-            ->where('is_admin', true);
+            ->where('is_admin', true)
+            ->get();
 
         return (bool) count($taskProject);
 

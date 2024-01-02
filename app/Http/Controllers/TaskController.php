@@ -32,13 +32,16 @@ class TaskController extends Controller
         $task->name = $request->name;
         $task->description = $request->description ?? null;
         $task->deadline = $request->deadline ?? null;
-        // Le statut d'une tâche nouvellement créée est forcément "À faire"
+        // The status of a new task is "To Do"
         $task->status = 0;
         $task->priority = $request->priority;
         $task->project_id = $request->project_id;
+        // User admin of the project ?
+        $is_admin = ProjectController::is_admin(Project::find($request->project_id), Auth::user());
+        if($is_admin != true){
+            abort(404, "The user is not an administrator");
+        }
         $task->save();
-        // Utilisateur admin sur le projet ??
-        $is_admin = ProjectController::is_admin(Project::where('id', $request->project_id), User::where('id',Auth::user()->id));
         return $task->toJson();
     
     }
