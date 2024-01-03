@@ -35,8 +35,9 @@ class PostTaskControllerTest extends TestCase
 
         $request = new Request($requestData);
 
-        $result = json_decode($taskPostController->store($request), true);
-        $this->assertNotNull(Task::find($result['id']));
+        $result = $taskPostController->store($request);
+        print_r($result);
+        $this->assertNotNull(Task::find($result['data']['id']));
         $this->assertEquals('Test', $result['name']);
         $this->assertEquals('Description of the task', $result['description']);
         $this->assertEquals('2023-12-31', $result['deadline']);

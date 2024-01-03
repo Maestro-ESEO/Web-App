@@ -41,14 +41,13 @@ class TaskController extends Controller
                 'status' => 404,
                 'message' => 'Not authorized',
             ]);
-        }else{
-            $task->save();
-            return response()->json([
-                'status' => 200,
-                'message' => 'Task created successfully',
-                'data' => $task,
-            ]);
         }
+        $task->save();
+        return response()->json([
+            'status' => 200,
+            'message' => 'Task created successfully',
+            'data' => $task,
+        ]);
     }
 
     public function index() : array
