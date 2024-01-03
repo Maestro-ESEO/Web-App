@@ -37,11 +37,18 @@ class TaskController extends Controller
         // User admin of the project ?
         $is_admin = ProjectController::is_admin(Project::find($request->project_id), AuthUtil::getAuthUser());
         if($is_admin != true){
-            abort(404, "The user is not an administrator");
+            return response()->json([
+                'status' => 404,
+                'message' => 'Not authorized',
+            ]);
+        }else{
+            $task->save();
+            return response()->json([
+                'status' => 200,
+                'message' => 'Task created successfully',
+                'data' => $task,
+            ]);
         }
-        $task->save();
-        return $task->toJson();
-    
     }
 
     public function index() : array
@@ -56,4 +63,40 @@ class TaskController extends Controller
         ]);
         return Task::findorfail($request->id);
     }
+
+    public function delete(Request $request)
+    {
+        $request->validate([
+            'id' => 'required',
+        ]);
+        $task = Task::findorfail($request->id);
+        $task->delete();
+        return response()->json([
+            'status' => 200,
+            'message' => 'Task deleted successfully',
+        ]);
+    }
+
+    public function update(Request $request, $id) : string
+    {
+        $request->validate([
+            'name' => 'string|nullable',
+            'description' => 'string|nullable',
+            'deadline' => 'date|nullable',
+            'priority' => 'int|nullable',
+            'project_id' => 'int|nullable'
+        ]);
+
+        $task = Task::findOrFail($id);
+        $task->name = $request->name ?? $task->name;
+        $task->description = $request->description ?? $task->description;
+        $task->deadline = $request->deadline ?? $task->deadline;
+        $task->priority = $request->priority ?? $task->priority;
+        $task->project_id = $request->project_id ?? $task->project_id;
+        $task->save();
+
+        return $task->toJson();
+    }
+    
 }
+
