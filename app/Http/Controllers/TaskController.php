@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Models\Project;
@@ -16,7 +17,7 @@ class TaskController extends Controller
         ]);
     }
 
-    public function store(Request $request) : string
+    public function store(Request $request) : JsonResponse
     {
         $request->validate([
             'name' => 'string|required',

@@ -35,17 +35,18 @@ class PostTaskControllerTest extends TestCase
 
         $request = new Request($requestData);
 
-        $result = $taskPostController->store($request);
-        print_r($result);
-        $this->assertNotNull(Task::find($result['data']['id']));
-        $this->assertEquals('Test', $result['name']);
-        $this->assertEquals('Description of the task', $result['description']);
-        $this->assertEquals('2023-12-31', $result['deadline']);
-        $this->assertEquals(0, $result['status']);
-        $this->assertEquals(1, $result['priority']);
-        $this->assertEquals($userProject->project_id, $result['project_id']);
+        $result = json_decode($taskPostController->store($request)->getContent(), true);
+        $this->assertEquals(200, $result['status']);
+        $data = $result['data'];
+        $this->assertNotNull(Task::find($data['id']));
+        $this->assertEquals('Test', $data['name']);
+        $this->assertEquals('Description of the task', $data['description']);
+        $this->assertEquals('2023-12-31', $data['deadline']);
+        $this->assertEquals(0, $data['status']);
+        $this->assertEquals(1, $data['priority']);
+        $this->assertEquals($userProject->project_id, $data['project_id']);
 
-        if($task = Task::find($result['id'])){
+        if($task = Task::find($data['id'])){
             $task->delete();
         }
     }
@@ -70,9 +71,9 @@ class PostTaskControllerTest extends TestCase
         ];
 
         $request = new Request($requestData);
-        $this->expectException(NotFoundHttpException::class);
-        $this->expectExceptionMessage("The user is not an administrator");
-        $taskPostController->store($request);
+        $result = json_decode($taskPostController->store($request)->getContent(), true);
+        $this->assertEquals(404, $result['status']);
+        $this->assertEquals('Not authorized', $result['message']);
     }
 
 }
