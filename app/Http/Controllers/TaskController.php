@@ -18,7 +18,7 @@ class TaskController extends Controller
 
     public function store(Request $request) : string
     {
-        $request->validate([
+        $credentials = $request->validate([
             'name' => 'string|required',
             'description' => 'string|nullable',
             'deadline' => 'date|nullable',
@@ -27,7 +27,7 @@ class TaskController extends Controller
         ]);
 
         $task = new Task();
-        $task->name = $request->name;
+        $task->name = $credentials['name'];
         $task->description = $request->description ?? null;
         $task->deadline = $request->deadline ?? null;
         // The status of a new task is "To Do"
