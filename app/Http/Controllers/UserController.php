@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     
-    public function show()
+    public function print()
     {
         return view('profile', [
             'user' => User::all()->first()

@@ -9,7 +9,7 @@ use App\Utils\AuthUtil;
 
 class TaskController extends Controller
 {
-    public function show()
+    public function print()
     {
         return view('task', [
             'tasks' => Task::all()
@@ -49,8 +49,11 @@ class TaskController extends Controller
         return Task::all()->index();
     }
 
-    public function get(Request $request) : string
+    public function show(Request $request) : string
     {
-
+        $request->validate([
+            'id' => 'required',
+        ]);
+        return Task::findorfail($request->id);
     }
 }
