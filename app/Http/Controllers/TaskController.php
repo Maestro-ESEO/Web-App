@@ -53,7 +53,12 @@ class TaskController extends Controller
 
     public function index() : array
     {
-        return Task::all()->index();
+        $tasks =  Task::all()->index();
+        return response()->json([
+            'status' => 200,
+            'message' => 'Tasks found successfully',
+            'data' => $tasks,
+        ]);
     }
 
     public function show(Request $request) : string
@@ -61,7 +66,13 @@ class TaskController extends Controller
         $request->validate([
             'id' => 'required',
         ]);
-        return Task::findorfail($request->id);
+
+        $task = Task::findorfail($request->id);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Task found successfully',
+            'data' => $task,
+        ]);
     }
 
     public function delete(Request $request)
@@ -95,8 +106,11 @@ class TaskController extends Controller
         $task->project_id = $request->project_id ?? $task->project_id;
         $task->save();
 
-        return $task->toJson();
+        return response()->json([
+            'status' => 200,
+            'message' => 'Task updated successfully',
+            'data' => $task
+        ]);
     }
-    
 }
 
