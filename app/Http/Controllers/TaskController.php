@@ -16,7 +16,7 @@ class TaskController extends Controller
         ]);
     }
 
-    public function post(Request $request) : string
+    public function store(Request $request) : string
     {
         $request->validate([
             'name' => 'string|required',
@@ -42,5 +42,15 @@ class TaskController extends Controller
         $task->save();
         return $task->toJson();
     
+    }
+
+    public function index() : array
+    {
+        return Task::all()->index();
+    }
+
+    public function get(Request $request) : string
+    {
+
     }
 }

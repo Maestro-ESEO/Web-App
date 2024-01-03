@@ -11,7 +11,7 @@ use App\Models\User;
 class ProjectController extends Controller
 {
     
-    public function post(Request $request): string
+    public function store(Request $request): string
     {
         $request->validate([
             'title' => 'required',

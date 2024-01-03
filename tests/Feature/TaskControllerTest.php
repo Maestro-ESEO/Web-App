@@ -35,7 +35,7 @@ class PostTaskControllerTest extends TestCase
 
         $request = new Request($requestData);
 
-        $result = json_decode($taskPostController->post($request), true);
+        $result = json_decode($taskPostController->store($request), true);
         $this->assertNotNull(Task::find($result['id']));
         $this->assertEquals('Test', $result['name']);
         $this->assertEquals('Description of the task', $result['description']);
@@ -71,7 +71,7 @@ class PostTaskControllerTest extends TestCase
         $request = new Request($requestData);
         $this->expectException(NotFoundHttpException::class);
         $this->expectExceptionMessage("The user is not an administrator");
-        $taskPostController->post($request);
+        $taskPostController->store($request);
     }
 
 }
