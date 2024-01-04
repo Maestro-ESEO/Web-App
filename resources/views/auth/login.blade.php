@@ -17,9 +17,11 @@
                 Email
             </label>
             <input type="email" name="email" value="{{ old("email") }}" class="rounded-xl bg-light-gray py-2 px-4 w-full text-md shadow-input">
-            @error("email")
-                {{ $message }}
-            @enderror
+            <p class="text-sm text-red font-semibold">
+                @error("email")
+                    {{ $message }}
+                @enderror
+            </p>
         </div>
 
         <div class="w-full flex flex-col items-start justify-start gap-2">
@@ -28,9 +30,11 @@
                 Mot de passe
             </label>
             <input type="password" name="password" value="{{ old("password") }}" class="rounded-xl bg-light-gray py-2 px-4 w-full text-md shadow-input">
-            @error("password")
-                {{ $message }}
-            @enderror
+            <p class="text-sm text-red font-semibold">
+                @error("password")
+                    {{ $message }}
+                @enderror
+            </p>
         </div>
 
         <button class="w-72 p-2 my-6 rounded-full bg-red uppercase text-xl text-white font-semibold shadow-btn">
