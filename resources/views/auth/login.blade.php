@@ -18,7 +18,7 @@
                 Email
             </label>
             <input type="email" name="email" value="{{ old("email") }}" class="rounded-xl bg-light-gray py-2 px-4 w-full text-md shadow-input">
-            <p class="text-sm text-red font-semibold">
+            <p class="text-sm text-red font-semibold -mt-2">
                 @error("email")
                     {{ $message }}
                 @enderror
@@ -32,7 +32,7 @@
                 Mot de passe
             </label>
             <input type="password" name="password" value="{{ old("password") }}" class="rounded-xl bg-light-gray py-2 px-4 w-full text-md shadow-input">
-            <p class="text-sm text-red font-semibold">
+            <p class="text-sm text-red font-semibold -mt-2">
                 @error("password")
                     {{ $message }}
                 @enderror

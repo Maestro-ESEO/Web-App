@@ -19,9 +19,11 @@
                 </label>
                 <input type="first_name" name="first_name" value="{{ old('first_name') }}"
                     class="rounded-xl bg-light-gray py-2 px-4 w-full text-md shadow-inp">
-                @error('first_name')
-                {{ $message }}
-                @enderror
+                <p class="text-sm text-red font-semibold -mt-2">
+                    @error('first_name')
+                    {{ $message }}
+                    @enderror
+                </p>
             </div>
 
             <div class="w-full flex flex-1 flex-col items-start justify-center gap-2">
@@ -32,9 +34,11 @@
                 </label>
                 <input type="last_name" name="last_name" value="{{ old('last_name') }}"
                     class="rounded-xl bg-light-gray py-2 px-4 w-full text-md shadow-inp">
-                @error('last_name')
-                {{ $message }}
-                @enderror
+                <p class="text-sm text-red font-semibold -mt-2">
+                    @error('last_name')
+                    {{ $message }}
+                    @enderror
+                </p>
             </div>
         </div>
 
@@ -47,9 +51,11 @@
             </label>
             <input type="email" name="email" value="{{ old('email') }}"
                 class="rounded-xl bg-light-gray py-2 px-4 w-full text-md shadow-inp">
-            @error('email')
-            {{ $message }}
-            @enderror
+            <p class="text-sm text-red font-semibold -mt-2">
+                @error('email')
+                {{ $message }}
+                @enderror
+            </p>
         </div>
 
         <div class="w-full flex flex-col items-start justify-center gap-2">
@@ -60,9 +66,11 @@
             </label>
             <input type="password" name="password" value="{{ old('password') }}"
                 class="rounded-xl bg-light-gray py-2 px-4 w-full text-md shadow-inp">
-            @error('password')
-            {{ $message }}
-            @enderror
+            <p class="text-sm text-red font-semibold -mt-2">
+                @error('password')
+                {{ $message }}
+                @enderror
+            </p>
         </div>
 
         <div class="w-full flex flex-col items-start justify-center gap-2">
@@ -73,9 +81,11 @@
             </label>
             <input type="password" name="password_confirm" value="{{ old('password_confirm') }}"
                 class="rounded-xl bg-light-gray py-2 px-4 w-full text-md shadow-inp">
-            @error('password_confirm')
-            {{ $message }}
-            @enderror
+            <p class="text-sm text-red font-semibold -mt-2">
+                @error('password_confirm')
+                {{ $message }}
+                @enderror
+            </p>
         </div>
 
         <button class=" w-72 p-2 my-6 rounded-full bg-red uppercase text-xl text-white font-semibold shadow-btn">Créer un compte</button>
