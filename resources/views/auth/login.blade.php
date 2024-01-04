@@ -12,24 +12,28 @@
         @csrf
 
         <div class="w-full flex flex-col items-start justify-start gap-2">
-            <label for="email" class="flex flex-row items-center justify-start gap-2 font-semibold text-md text-dark-gray">
+            <label for="email"
+                class="flex flex-row items-center justify-start gap-2 font-semibold text-md text-dark-gray">
                 <x-icons.email></x-icons.email>
                 Email
             </label>
-            <input type="email" name="email" value="{{ old("email") }}" class="rounded-xl bg-light-gray py-2 px-4 w-full text-md shadow-input">
+            <input type="email" name="email" value="{{ old(" email") }}"
+                class="rounded-xl bg-light-gray py-2 px-4 w-full text-md shadow-input">
             @error("email")
-                {{ $message }}
+            {{ $message }}
             @enderror
         </div>
 
         <div class="w-full flex flex-col items-start justify-start gap-2">
-            <label for="password" class="flex flex-row items-center justify-start gap-2 font-semibold text-md text-dark-gray">
+            <label for="password"
+                class="flex flex-row items-center justify-start gap-2 font-semibold text-md text-dark-gray">
                 <x-icons.password></x-icons.password>
                 Mot de passe
             </label>
-            <input type="password" name="password" value="{{ old("password") }}" class="rounded-xl bg-light-gray py-2 px-4 w-full text-md shadow-input">
+            <input type="password" name="password" value="{{ old(" password") }}"
+                class="rounded-xl bg-light-gray py-2 px-4 w-full text-md shadow-input">
             @error("password")
-                {{ $message }}
+            {{ $message }}
             @enderror
         </div>
 
