@@ -19,6 +19,7 @@ use App\Http\Controllers\TaskController;
 
 Route::get('/login', [AuthController::class, 'login_view'])->name('auth.login');
 Route::get('/register', [AuthController::class, 'register_view'])->name('auth.register');
+
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::post('/register', [AuthController::class, 'register'])->name('auth.register');
 Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');

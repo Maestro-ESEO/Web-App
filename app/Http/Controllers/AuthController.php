@@ -32,7 +32,7 @@ class AuthController extends Controller
             return redirect()->intended(route('home'));
         }
         return to_route('auth.login')->withErrors([
-            'email' => 'Email or password is incorrect.',
+            "email" => "L'adresse email ou le mot de passe est incorrect.",
         ])->onlyInput('email');
     }
 
@@ -41,7 +41,7 @@ class AuthController extends Controller
 
         if (User::where('email', $credentials['email'])->exists()) {
             return to_route('auth.register')->withErrors([
-                'email' => 'Email already exists.',
+                "email" => "L'adresse email est déjà utilisée.",
             ])->onlyInput('email');
         }
         $user = User::create([
@@ -52,7 +52,7 @@ class AuthController extends Controller
         ]);
         if ($user == null) {
             return to_route('auth.register')->withErrors([
-                'email' => 'Something went wrong.',
+                'email' => "Une erreur est survenue lors de l'inscription.",
             ])->onlyInput('email');
         }
         Auth::login($user);

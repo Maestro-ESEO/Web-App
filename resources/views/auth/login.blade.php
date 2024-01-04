@@ -1,51 +1,52 @@
-<!DOCTYPE html>
-<html>
+@extends("auth.layout")
 
-<head>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-    tailwind.config = {
-    theme: {
-        extend: {
-            colors: {
-                clifford: '#da373d',
-            }
-        }
-    }
-    }
-    </script>
-</head>
+@section("content")
 
-<body class="">
-    <div class="w-full h-full flex items-center justify-center">
-        <div class="">
-            <a href="/register">Register</a>
+<div class="w-1/2 flex flex-col items-center justify-center gap-6">
+    <h2 class="text-5xl font-bold uppercase">
+        Connexion
+    </h2>
 
-            <form action={{ route('auth.login') }} method="post">
+    <form action={{ route("auth.login") }} method="post" class="w-full flex flex-col items-center justify-center gap-4">
 
-                @csrf
+        @csrf
 
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" placeholder="Email" value="{{ old('email') }}">
-                    @error('email')
-                        {{ $message }}
-                    @enderror
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Mot de passe</label>
-                    <input type="password" name="password" placeholder="Mot de passe">
-                    @error('password')
-                        {{ $message }}
-                    @enderror
-                </div>
-
-                <button class="p-2 rounded-lg bg-clifford">Login</button>
-            </form>
+        <div class="w-full flex flex-col items-start justify-start gap-2">
+            <label for="email" class="flex flex-row items-center justify-start gap-2 font-semibold text-md text-dark-gray">
+                <x-icons.email></x-icons.email>
+                Email
+            </label>
+            <input type="email" name="email" value="{{ old("email") }}" class="rounded-xl bg-light-gray py-2 px-4 w-full text-md shadow-input">
+            @error("email")
+                {{ $message }}
+            @enderror
         </div>
+
+        <div class="w-full flex flex-col items-start justify-start gap-2">
+            <label for="password" class="flex flex-row items-center justify-start gap-2 font-semibold text-md text-dark-gray">
+                <x-icons.password></x-icons.password>
+                Mot de passe
+            </label>
+            <input type="password" name="password" value="{{ old("password") }}" class="rounded-xl bg-light-gray py-2 px-4 w-full text-md shadow-input">
+            @error("password")
+                {{ $message }}
+            @enderror
+        </div>
+
+        <button class="w-72 p-2 my-6 rounded-full bg-red uppercase text-xl text-white font-semibold shadow-btn">
+            Se connecter
+        </button>
+    </form>
+
+    <div class="w-full flex flex-row items-center justify-stretch gap-2">
+        <div class="flex-1 h-0.5 rounded-full bg-dark-gray"></div>
+        <p class="text-dark-gray text-md font-bold">OU</p>
+        <div class="flex-1 h-0.5 rounded-full bg-dark-gray"></div>
     </div>
-</body>
 
-</html>
+    <a href="/register" class="text-dark-gray font-bold text-lg underline">
+        Créer un compte
+    </a>
+</div>
 
+@endsection
