@@ -44,7 +44,9 @@
     </section>
 
     <main class="h-full flex flex-1 flex-col items-center justify-center">
-        @yield("content")
+        <div class="w-1/2 flex flex-col items-center justify-center gap-6">
+            @yield("content")
+        </div>
     </main>
 
 </body>
