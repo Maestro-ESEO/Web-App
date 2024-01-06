@@ -6,6 +6,11 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class RegisterRequest extends FormRequest
 {
+
+    // Définissez la variable pour le nombre minimum de caractères dans le mot de passe
+    public static $minPasswordLength = 8;
+
+
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -25,7 +30,7 @@ class RegisterRequest extends FormRequest
             'first_name' => ['required', 'string'],
             'last_name' => ['required', 'string'],
             'email' => ['required', 'email'],
-            'password' => ['required', 'min:8', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'],
+            'password' => ['required', 'min:'.self::$minPasswordLength, 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'],
             'password_confirm' => ['required', 'same:password'],
         ];
     }
@@ -40,8 +45,8 @@ class RegisterRequest extends FormRequest
             "email.required" => "L'email est requis.",
             "email.email" => "L'email n'est pas valide.",
             "password.required" => "Le mot de passe est requis.",
-            "password.min" => "Le mot de passe doit contenir au moins :min caractères.",
-            "password.regex" => "Le mot de passe doit contenir au moins une lettre minuscule, une lettre majuscule et un chiffre.",
+            "password.min" => "Le mot de passe doit contenir au moins ". self::$minPasswordLength ." caractères dont une minuscule, une majuscule et un chiffre.",
+            "password.regex" => "Le mot de passe doit contenir au moins ". self::$minPasswordLength ." caractères dont une minuscule, une majuscule et un chiffre.",
             "password_confirm.required" => "La confirmation de mot de passe est requise.",
             "password_confirm.same" => "Le mot de passe et la confirmation du mot de passe ne correspondent pas.",
         ];
