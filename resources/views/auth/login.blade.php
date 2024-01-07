@@ -8,11 +8,11 @@
 <form action={{ route("auth.login") }} method="post" class="w-full flex flex-col items-center justify-center gap-4">
     @csrf
 
-    <x-ui.input name="email">
+    <x-ui.input type="email" name="email">
         <x-icons.email /> Email
     </x-ui.input>
 
-    <x-ui.input name="password">
+    <x-ui.input type="password" name="password">
         <x-icons.password /> Mot de passe
     </x-ui.input>
 

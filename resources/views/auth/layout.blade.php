@@ -40,7 +40,7 @@
 <body class="w-screen h-screen flex flex-row items-stretch justify-stretch">
 
     <section class="w-1/3 h-full flex items-center justify-center shadow-box">
-        <img src="logo.png" alt="Logo" class="w-1/2">
+        <img draggable="false" src="logo.png" alt="Logo" class="w-1/2">
     </section>
 
     <main class="h-full flex flex-1 flex-col items-center justify-center">
