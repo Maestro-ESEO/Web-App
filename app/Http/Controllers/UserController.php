@@ -26,4 +26,10 @@ class UserController extends Controller
         ]);
     }
 
+    public function dashboard() {
+        return view('dashboard.dashboard', [
+            'user' => Auth::user()
+        ]);
+    }
+
 }
