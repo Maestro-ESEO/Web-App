@@ -1,3 +1,3 @@
-<h2 class="text-5xl font-bold uppercase">
+<h2 class="text-4xl font-bold">
     {{ $slot }}
 </h2>
