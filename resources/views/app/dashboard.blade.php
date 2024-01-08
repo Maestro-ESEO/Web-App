@@ -1,8 +1,10 @@
 @extends("app.layout")
 
 
-@section("page")
+@section("content")
 
-<h1>Hello world!</h1>
+<section>
+    dhuvfgyhndj
+</section>
 
 @endsection

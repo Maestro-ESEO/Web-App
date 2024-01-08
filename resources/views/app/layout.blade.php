@@ -11,7 +11,7 @@
 </section>
 
 <main class="h-full flex flex-1 flex-col items-center justify-center">
-    @section("content")
+    @yield("content")
 </main>
 
 @endsection
