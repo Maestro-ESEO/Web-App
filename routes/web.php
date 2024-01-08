@@ -24,8 +24,5 @@ Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::post('/register', [AuthController::class, 'register'])->name('auth.register');
 Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
-Route::get('/', [UserController::class, 'home'])->name('home')->middleware('auth');
 Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard')->middleware('auth');
-
-Route::get('/profile', [UserController::class, 'print'])->name('profile')->middleware('auth');
-Route::get('/task', [TaskController::class, 'print']);
+Route::redirect('/', '/dashboard');

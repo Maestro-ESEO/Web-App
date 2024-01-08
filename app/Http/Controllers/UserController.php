@@ -8,26 +8,9 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    
-    public function print()
-    {
-        $user = Auth::user();
-        if ($user == null) {
-            return redirect()->route('login');
-        }
-        return view('profile', [
-            'user' => $user
-        ]);
-    }
-
-    public function home() {
-        return view('home', [
-            'user' => Auth::user()
-        ]);
-    }
 
     public function dashboard() {
-        return view('dashboard.dashboard', [
+        return view('app.dashboard', [
             'user' => Auth::user()
         ]);
     }

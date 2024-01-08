@@ -10,12 +10,6 @@ use App\Utils\AuthUtil;
 
 class TaskController extends Controller
 {
-    public function print()
-    {
-        return view('task', [
-            'tasks' => Task::all()
-        ]);
-    }
 
     public function store(Request $request) : JsonResponse
     {

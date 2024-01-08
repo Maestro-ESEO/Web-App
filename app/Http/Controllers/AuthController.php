@@ -12,14 +12,14 @@ class AuthController extends Controller
 {
     public function login_view() {
         if (Auth::check()) {
-            return redirect()->route('home');
+            return redirect()->route('dashboard');
         }
         return view('auth.login');
     }
 
     public function register_view() {
         if (Auth::check()) {
-            return redirect()->route('home');
+            return redirect()->route('dashboard');
         }
         return view('auth.register');
     }
@@ -27,13 +27,14 @@ class AuthController extends Controller
     public function login(LoginRequest $request) {
         $credentials = $request->validated();
 
-        if (Auth::attempt($credentials)) {
-            session()->regenerate();
-            return redirect()->intended(route('home'));
+        if (!Auth::attempt($credentials)) {
+            return to_route('auth.login')->withErrors([
+                "email" => "L'adresse email ou le mot de passe est incorrect.",
+            ])->onlyInput('email');
         }
-        return to_route('auth.login')->withErrors([
-            "email" => "L'adresse email ou le mot de passe est incorrect.",
-        ])->onlyInput('email');
+        
+        session()->regenerate();
+        return redirect()->intended(route('dashboard'));
     }
 
     public function register(RegisterRequest $request) {
@@ -55,9 +56,10 @@ class AuthController extends Controller
                 'email' => "Une erreur est survenue lors de l'inscription.",
             ])->onlyInput('email');
         }
+
         Auth::login($user);
         session()->regenerate();
-        return redirect()->route('home');
+        return redirect()->intended(route('dashboard'));
     }
 
     public function logout() {
