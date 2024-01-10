@@ -6,9 +6,9 @@
 <div class="w-full h-full flex flex-col justify-start py-14 px-16">
     <x-ui.title>Hello {{Auth::user()->first_name}}!</x-ui.title>
     <div class="w-full flex flex-wrap justify-start items-start mt-16 gap-10">
-        <div class="w-[24rem] h-52 flex flex-col justify-start items-start bg-gray-100 rounded-2xl shadow-project p-4 gap-3">
+        <div class="w-[24rem] h-56 flex flex-col justify-start items-start bg-gray-100 rounded-2xl shadow-project p-4 gap-3">
             <p class="font-bold text-black text-xl">Project 1</p>
-            <p class="text-dark-gray text-sm  line-clamp-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni distinctio voluptatibus ducimus saepe adipisci deleniti consequuntur mollitia necessitatibus expedita iure debitis eos, aut repellendus inventore amet quibusdam vel, cum quo?</p>
+            <p class="text-dark-gray text-sm line-clamp-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni distinctio voluptatibus ducimus saepe adipisci deleniti consequuntur mollitia necessitatibus expedita iure debitis eos, aut repellendus inventore amet quibusdam vel, cum quo?</p>
 
             <div class="w-32 h-8 flex flex-row justify-center items-center border border-dark-gray rounded-lg gap-2 text-dark-gray">
                 <x-icons.deadline class="stroke-dark-gray" size=16 />
