@@ -18,24 +18,22 @@
 
             <div class="w-full flex justify-start items-center gap-3">
                 <div class="flex justify-start items-center pl-3">
-                    <div class="h-9 w-9 -ml-3 rounded-full bg-black"></div>
+                    <div class="h-9 w-9 -ml-3 rounded-full bg-green-500"></div>
                     <div class="h-9 w-9 -ml-3 rounded-full bg-red"></div>
                     <div class="h-9 w-9 -ml-3 rounded-full bg-yellow-300"></div>
-                    <div class="h-9 w-9 -ml-3 rounded-full flex border items-center justify-center bg-gray-200 text-sm">+1</div>
+                    <div class="h-9 w-9 -ml-3 rounded-full flex items-center justify-center bg-gray-300 text-sm">+1</div>
                 </div>
                 <div class="flex flex-col flex-1 justify-center items-start">
                     <p class="text-sm text-dark-gray">2 tasks left</p>
                     <div class="flex w-full justify-start items-center gap-2">
                         <div class="flex-1 bg-gray-200 rounded-full h-2.5">
-                            <div class="bg-red h-2.5 rounded-full" style="width: 90%"></div>
+                            <div class="bg-red h-2.5 rounded-full w-[90%]"></div>
                         </div>
                         <p class="font-semibold text-xs  text-red">90%</p>
                     </div>
-
                 </div>
             </div>
         </div>
-        
     </div>
 </div>
 
