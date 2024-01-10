@@ -17,7 +17,7 @@ class ProjectFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->sentence(4, true),
+            'name' => ucfirst(fake()->word()),
             'description' => fake()->sentence(10, true),
             'start_date' => fake()->dateTimeBetween('-1 year', 'now'),
             'end_date' => fake()->dateTimeBetween('now', '+1 year')
