@@ -20,7 +20,7 @@ $projects = $data['status'] == 200 ? $data['data'] : null;
     <div class="w-full flex flex-wrap justify-start items-start mt-16 gap-10">
         @if ($projects != null)
             @foreach ($projects as $project)
-                <x-project_card.project_card name="{{$project['name']}}" description="{{$project['description']}}" deadline="{{$project['end_date']}}"></x-project_card.project_card>
+                <x-project_card.project_card name="{{$project['name']}}" description="{{$project['description']}}" deadline="{{$project['end_date']}}" id="{{$project['id']}}"></x-project_card.project_card>
             @endforeach
         @endif
 
