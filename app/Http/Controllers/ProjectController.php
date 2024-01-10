@@ -7,9 +7,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\UserProject;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 
 class ProjectController extends Controller
 {
+
+    public function index(): JsonResponse
+    {
+        // Get all projects and respond with JSON (status, message and data)
+        $projects = Project::all();
+        return response()->json([
+            'status' => '200',
+            'message' => 'Projects found successfully',
+            'data' => $projects,
+        ]);
+    }
     
     public function store(Request $request): string
     {
@@ -28,11 +40,6 @@ class ProjectController extends Controller
         $project->save();
         
         return $project->toJson();
-    }
-
-    public function index(): array
-    {
-        return Project::all()->toArray();
     }
 
     public function get(Request $request): Project
