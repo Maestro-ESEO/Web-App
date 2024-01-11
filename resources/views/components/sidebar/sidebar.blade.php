@@ -9,7 +9,7 @@ $projects = $data['status'] == 200 ? $data['data'] : null;
 @endphp
 
 
-<section class="w-64 p-6 h-screen flex flex-col items-center justify-between shadow-box">
+<section class="fixed w-64 p-6 h-screen flex flex-col items-center justify-between shadow-box">
 
     <div class="w-full flex items-center justify-center gap-2">
         <img src="logo.png" alt="Logo" class="w-8">

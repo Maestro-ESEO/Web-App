@@ -39,7 +39,7 @@
     </script>
 </head>
 
-<body class="w-screen h-screen flex flex-row items-stretch justify-stretch">
+<body class="w-screen h-screen flex flex-row items-stretch justify-stretch overflow-x-hidden">
     @yield("page")
 </body>
 
