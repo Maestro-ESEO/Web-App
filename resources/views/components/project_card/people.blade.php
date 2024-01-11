@@ -3,6 +3,7 @@
 @php
 use App\Models\UserProject;
 use App\Models\User;
+
 if($id != null){
 $usersProjects = UserProject::where('project_id', $id)->get();
 $userIds = $usersProjects->pluck('user_id')->toArray();

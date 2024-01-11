@@ -11,7 +11,7 @@ use App\Utils\AuthUtil;
 class TaskController extends Controller
 {
 
-    public function store(Request $request) : JsonResponse
+    public function store(Request $request): JsonResponse
     {
         $credentials = $request->validate([
             'name' => 'string|required',
@@ -31,7 +31,7 @@ class TaskController extends Controller
         $task->project_id = $request->project_id;
         // User admin of the project ?
         $is_admin = ProjectController::is_admin(Project::find($request->project_id), AuthUtil::getAuthUser());
-        if($is_admin != true){
+        if ($is_admin != true) {
             return response()->json([
                 'status' => 404,
                 'message' => 'Not authorized',
@@ -45,9 +45,9 @@ class TaskController extends Controller
         ]);
     }
 
-    public function index() : array
+    public function index(): JsonResponse
     {
-        $tasks =  Task::all()->index();
+        $tasks =  Task::all();
         return response()->json([
             'status' => 200,
             'message' => 'Tasks found successfully',
@@ -55,7 +55,31 @@ class TaskController extends Controller
         ]);
     }
 
-    public function show(Request $request) : string
+    public function getProjectProgression(String $id): JsonResponse
+    {
+        $tasks =  Task::where('project_id', $id)->get();
+        $tasks_completed = $tasks->filter(function ($value, $key) {
+            return $value->status == 3;
+        })->count();
+        $tasks_unfinished = $tasks->count() - $tasks_completed;
+        if ($tasks->count() == 0) {
+            $progression = 0;
+        } else {
+            $progression = $tasks_completed / $tasks->count() * 100;
+        }
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Tasks found successfully',
+            'data' => [
+                'tasks_completed' => $tasks_completed,
+                'tasks_unfinished' => $tasks_unfinished,
+                'progression' => $progression,
+            ],
+        ]);
+    }
+
+    public function show(Request $request): string
     {
         $request->validate([
             'id' => 'required',
@@ -82,7 +106,7 @@ class TaskController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id) : string
+    public function update(Request $request, $id): string
     {
         $request->validate([
             'name' => 'string|nullable',
@@ -107,4 +131,3 @@ class TaskController extends Controller
         ]);
     }
 }
-
