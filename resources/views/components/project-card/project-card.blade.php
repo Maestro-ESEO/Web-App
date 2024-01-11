@@ -19,14 +19,14 @@ $progression = $data['status'] == 200 ? $data['data'] : null;
     <p class="font-bold text-black text-xl">{{$name}}</p>
 <p class="text-dark-gray text-sm min-h-10 line-clamp-2">{{$description}}</p>
 
-    <x-project_card.date date="{{date('m/d/Y', $date)}}" />
+    <x-project-card.date date="{{date('d/m/Y', $date)}}" />
     <x-ui.divider />
 
     <div class="w-full flex justify-start items-center gap-3">
-        <x-project_card.people id="{{$id}}"></x-project_card.people>
+        <x-project-card.people id="{{$id}}"></x-project-card.people>
         <div class="flex flex-col flex-1 justify-center items-start">
             <p class="text-sm text-dark-gray">{{$progression['tasks_unfinished']}} tasks left</p>
-            <x-project_card.progress progress="{{$progression['progression']}}" />
+            <x-project-card.progress progress="{{$progression['progression']}}" />
         </div>
     </div>
 </div>

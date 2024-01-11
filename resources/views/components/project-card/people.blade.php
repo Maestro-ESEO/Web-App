@@ -15,11 +15,11 @@ $users = User::whereIn('id', $userIds)->get();
 <div class="flex justify-start items-center pl-3">
     @if($users->count()<=4) 
         @foreach ($users as $user)
-        <x-project_card.circle stylecss="object-scale-down -ml-3" url="{{$user['profile_photo_path']}}"/>
+        <x-project-card.circle stylecss="object-scale-down -ml-3" url="{{$user['profile_photo_path']}}"/>
         @endforeach
     @else
         @foreach ($users as $user)
-            <x-project_card.circle stylecss="bg-green-500 -ml-3" />
+            <x-project-card.circle stylecss="bg-green-500 -ml-3" />
             @if ($loop->iteration == 3)
                 @break
             @endif
