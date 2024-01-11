@@ -8,7 +8,7 @@ $image_url = $user->profile_photo_url ?? "profile_placeholder.png";
 
 
 <div class="relative inline-block group w-full">
-    <div class="hidden absolute z-10 group-hover:flex bg-white rounded-lg p-1 bottom-[3.25rem] w-full flex flex-col items-start justify-start gap-1 cursor-pointer border-2">
+    <div class="hidden absolute z-10 group-hover:flex bg-white rounded-xl p-2 left-1/2 -translate-x-1/2 bottom-[3rem] w-5/6 flex flex-col items-start justify-start gap-1 cursor-pointer shadow-box">
         <x-sidebar.button href="profile">
             <x-icons.name size="18" /> Profile
         </x-sidebar.button>
