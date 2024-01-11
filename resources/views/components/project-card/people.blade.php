@@ -15,7 +15,7 @@ $users = User::whereIn('id', $userIds)->get();
 <div class="flex justify-start items-center pl-3">
     @if($users->count()<=4) 
         @foreach ($users as $user)
-        <x-project-card.circle stylecss="object-scale-down -ml-3" url="{{$user['profile_photo_path']}}"/>
+        <x-project-card.circle stylecss="object-scale-down -ml-3" url="{{$user['profile_photo_path'] ?? 'profile_placeholder.png'}}"/>
         @endforeach
     @else
         @foreach ($users as $user)
