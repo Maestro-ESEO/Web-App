@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-
 class UserController extends Controller
 {
 
     public function dashboard() {
-        return view('app.dashboard', [
-            'user' => Auth::user()
-        ]);
+        return view('app.dashboard');
+    }
+
+    public function profile() {
+        return view('app.profile');
     }
 
 }
