@@ -5,12 +5,12 @@
 
 @php
 
-use App\Http\Controllers\TaskController;
+use App\Http\Controllers\ProjectController;
 $date = strtotime($deadline);
 
 //Get Tasks of the project
-$taskController = new TaskController();
-$data = json_decode($taskController->getProjectProgression($id)->getContent(), true);
+$projectController = new ProjectController();
+$data = json_decode($projectController->getProgression($id)->getContent(), true);
 $progression = $data['status'] == 200 ? $data['data'] : null;
 @endphp
 

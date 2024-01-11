@@ -55,30 +55,6 @@ class TaskController extends Controller
         ]);
     }
 
-    public function getProjectProgression(String $id): JsonResponse
-    {
-        $tasks =  Task::where('project_id', $id)->get();
-        $tasks_completed = $tasks->filter(function ($value, $key) {
-            return $value->status == 3;
-        })->count();
-        $tasks_unfinished = $tasks->count() - $tasks_completed;
-        if ($tasks->count() == 0) {
-            $progression = 0;
-        } else {
-            $progression = $tasks_completed / $tasks->count() * 100;
-        }
-
-        return response()->json([
-            'status' => 200,
-            'message' => 'Tasks found successfully',
-            'data' => [
-                'tasks_completed' => $tasks_completed,
-                'tasks_unfinished' => $tasks_unfinished,
-                'progression' => $progression,
-            ],
-        ]);
-    }
-
     public function show(Request $request): string
     {
         $request->validate([

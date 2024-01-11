@@ -16,10 +16,16 @@ $projects = $data['status'] == 200 ? $data['data'] : null;
 
 <div class="w-full h-full flex flex-col justify-start py-14 px-16">
     <x-ui.title>Hello {{Auth::user()->first_name}}!</x-ui.title>
-    <div class="w-full flex flex-wrap justify-start items-start mt-16 gap-10">
+
+    <div class="w-full flex flex-wrap justify-start items-start py-16 gap-10">
         @if ($projects != null)
             @foreach ($projects as $project)
-                <x-project_card.project_card name="{{$project['name']}}" description="{{$project['description']}}" deadline="{{$project['end_date']}}" id="{{$project['id']}}"></x-project_card.project_card>
+                <x-project_card.project_card
+                    name="{{$project['name']}}"
+                    description="{{$project['description']}}"
+                    deadline="{{$project['end_date']}}"
+                    id="{{$project['id']}}"
+                />
             @endforeach
         @endif
     </div>

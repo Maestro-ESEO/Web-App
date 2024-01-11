@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\UserProject;
@@ -78,7 +79,30 @@ class ProjectController extends Controller
             ->get();
 
         return (bool) count($taskProject);
+    }
 
+    public function getProgression(String $id): JsonResponse
+    {
+        $tasks =  Task::where('project_id', $id)->get();
+        $tasks_completed = $tasks->filter(function ($value, $key) {
+            return $value->status == 3;
+        })->count();
+        $tasks_unfinished = $tasks->count() - $tasks_completed;
+        if ($tasks->count() == 0) {
+            $progression = 0;
+        } else {
+            $progression = round($tasks_completed / $tasks->count() * 100);
+        }
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Tasks found successfully',
+            'data' => [
+                'tasks_completed' => $tasks_completed,
+                'tasks_unfinished' => $tasks_unfinished,
+                'progression' => $progression,
+            ],
+        ]);
     }
 
 }
