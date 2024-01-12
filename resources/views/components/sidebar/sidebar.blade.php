@@ -11,10 +11,10 @@ $projects = $data['status'] == 200 ? $data['data'] : null;
 
 <section class="fixed w-64 p-4 h-screen flex flex-col items-center justify-between shadow-box">
 
-    <div class="w-full flex items-center justify-center gap-2">
-        <img src={{ asset("logo.png") }} alt="Logo" class="w-8">
+    <a class="w-full flex items-center justify-center gap-2" href={{ url("/") }}>
+        <img src={{ asset("logo.png") }} alt="Logo" class="w-8" draggable="false">
         <h2 class="text-2xl text-blue font-bold">Maestro</h2>
-    </div>
+    </a>
 
     <div class="w-full flex flex-col items-start justify-start gap-4">
         <x-sidebar.category title="Pages">
