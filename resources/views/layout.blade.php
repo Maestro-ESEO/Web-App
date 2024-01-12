@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maestro</title>
 
-    <link rel="shortcut icon" href="logo.png">
+    <link rel="shortcut icon" href={{ asset("logo.png") }}>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
