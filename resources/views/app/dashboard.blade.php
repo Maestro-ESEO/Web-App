@@ -25,7 +25,9 @@ $projects = $data['status'] == 200 ? $data['data'] : null;
                     description="{{$project['description']}}"
                     deadline="{{$project['end_date']}}"
                     id="{{$project['id']}}"
-                />
+                    href="projects/{{$project['id']}}"
+                >
+                </x-project-card.project-card>
             @endforeach
         @endif
     </div>
