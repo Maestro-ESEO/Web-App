@@ -16,7 +16,7 @@ $projects = $data["status"] == 200 ? $data["data"] : null;
         <h2 class="text-2xl text-blue font-bold">Maestro</h2>
     </a>
 
-    <div class="w-full flex flex-col items-start justify-start gap-4">
+    <div class="w-full flex flex-col items-start justify-start gap-6">
         <x-sidebar.category title="Pages">
             <x-sidebar.button href="dashboard">
                 <x-icons.dashboard size="18" /> Dashboard
