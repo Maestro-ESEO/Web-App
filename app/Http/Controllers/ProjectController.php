@@ -12,10 +12,10 @@ use Illuminate\Http\JsonResponse;
 class ProjectController extends Controller
 {
     public function show($id) {
-        $project = Project::all()->find($id);
         $user = AuthUtil::getAuthUser();
+        $project = Project::all()->find($id);
 
-        if (!UserProject::where("project_id", $project->id)->where("user_id", $user->id)->get()->count()) {
+        if (!$project or !UserProject::where("project_id", $project->id)->where("user_id", $user->id)->get()->count()) {
             return redirect()->route("dashboard");
         }
 
