@@ -29,8 +29,8 @@ $projects = $data["status"] == 200 ? $data["data"] : null;
         @if ($projects != null)
             <x-sidebar.category title="Projects">
                 @foreach ($projects as $project)
-                    <x-sidebar.button href="project/{{ $project["id"] }}">
-                        <x-icons.project size="18" /> {{ $project["name"] }}
+                    <x-sidebar.button href="project/{{ $project['id'] }}">
+                        <x-icons.project size="18" /> {{ $project['name'] }}
                     </x-sidebar.button>
                 @endforeach
             </x-sidebar.category>
