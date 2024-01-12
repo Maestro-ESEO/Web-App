@@ -12,8 +12,8 @@ use App\Http\Controllers\ProjectController;
 
 $date = strtotime($deadline);
 
-$projectController = new ProjectController();
-$data = json_decode($projectController->getProgression($id)->getContent(), true);
+$controller = app(ProjectController::class);
+$data = json_decode($controller->getProgression($id)->getContent(), true);
 $progression = $data['status'] == 200 ? $data['data'] : null;
 
 @endphp

@@ -8,10 +8,26 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\UserProject;
 use App\Models\User;
+use App\Utils\AuthUtil;
 use Illuminate\Http\JsonResponse;
 
 class ProjectController extends Controller
 {
+    public function show($id) {
+        $project = Project::all()->find($id);
+        $user = AuthUtil::getAuthUser();
+
+        if (!UserProject::where('project_id', $project->id)->where('user_id', $user->id)->get()->count()) {
+            return redirect()->route('dashboard');
+        }
+
+        $is_admin = ProjectController::is_admin($project, $user);
+
+        return view('app.project', [
+            "project" => $project,
+            "is_admin" => $is_admin
+        ]);
+    }
 
     public function index(): JsonResponse
     {
