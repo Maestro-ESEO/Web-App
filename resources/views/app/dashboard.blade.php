@@ -19,18 +19,15 @@ $projects = $data['status'] == 200 ? $data['data'] : null;
 
     <div class="w-full flex flex-wrap justify-start items-start py-16 gap-10">
         @if ($projects != null)
-            @foreach ($projects as $project)
-                <x-project-card.project-card
-                    name="{{$project['name']}}"
-                    description="{{$project['description']}}"
-                    deadline="{{$project['end_date']}}"
-                    id="{{$project['id']}}"
-                    href="projects/{{$project['id']}}"
-                >
-                </x-project-card.project-card>
-            @endforeach
+        @foreach ($projects as $project)
+        <x-project-card.project-card name="{{$project['name']}}" description="{{$project['description']}}" deadline="{{$project['end_date']}}" id="{{$project['id']}}" href="projects/{{$project['id']}}">
+        </x-project-card.project-card>
+        @endforeach
         @endif
     </div>
+
 </div>
+
+<x-ui.tooltip />
 
 @endsection
