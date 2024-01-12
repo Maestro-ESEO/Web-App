@@ -25,7 +25,7 @@ $progression = $data['status'] == 200 ? $data['data'] : null;
         <p class="font-bold text-black text-xl">{{$name}}</p>
         <p class="text-dark-gray text-sm min-h-10 line-clamp-2">{{$description}}</p>
 
-        <x-project-card.date date="{{date('M. d', $date)}}" />
+        <x-project-card.date date="{{date('M. d, Y', $date)}}" />
         <x-ui.divider />
 
         <div class="w-full flex justify-start items-center gap-3">

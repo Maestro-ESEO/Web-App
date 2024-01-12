@@ -31,6 +31,9 @@ $projects = $data['status'] == 200 ? $data['data'] : null;
             @endforeach
         @endif
     </div>
+
 </div>
+
+<x-ui.tooltip />
 
 @endsection
