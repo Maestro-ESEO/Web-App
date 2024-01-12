@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\ProjectController;
 
-$projectController = new ProjectController();
-$data = json_decode($projectController->index()->getContent(), true);
-$projects = $data['status'] == 200 ? $data['data'] : null;
+$jsonData = app(ProjectController::class)->index()->getContent();
+$data = json_decode($jsonData, true);
+$projects = $data["status"] == 200 ? $data["data"] : null;
 
 @endphp
 
@@ -26,15 +26,15 @@ $projects = $data['status'] == 200 ? $data['data'] : null;
             </x-sidebar.button>
         </x-sidebar.category>
         
-        <x-sidebar.category title="Projects">
-            @if ($projects != null)
+        @if ($projects != null)
+            <x-sidebar.category title="Projects">
                 @foreach ($projects as $project)
-                    <x-sidebar.button href="project/{{ $project['id'] }}">
-                        <x-icons.project size="18" /> {{ $project['name'] }}
+                    <x-sidebar.button href="project/{{ $project["id"] }}">
+                        <x-icons.project size="18" /> {{ $project["name"] }}
                     </x-sidebar.button>
                 @endforeach
-            @endif
-        </x-sidebar.category>
+            </x-sidebar.category>
+        @endif
     </div>
 
     <x-sidebar.profile />

@@ -15,7 +15,7 @@ $projects = $data['status'] == 200 ? $data['data'] : null;
 
 
 <div class="w-full h-full flex flex-col justify-start py-14 px-16">
-    <x-ui.title>Hello {{Auth::user()->first_name}}!</x-ui.title>
+    <x-ui.title>Hi {{Auth::user()->first_name}}!</x-ui.title>
 
     <div class="w-full flex flex-wrap justify-start items-start py-16 gap-10">
         @if ($projects != null)

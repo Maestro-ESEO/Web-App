@@ -19,7 +19,12 @@ $image_url = $user->profile_photo_url ?? asset("profile_placeholder.png");
 
     <div class="px-4 py-2 w-full flex flex-row items-center justify-start gap-2 group-hover:bg-light-gray hover:bg-light-gray transition-all group cursor-pointer rounded-lg">
         <div class="h-9 w-9 rounded-full">
-            <img draggable="false" src="{{$image_url}}" class="w-full h-full object-cover rounded-full" alt="Image">
+            <img
+                draggable="false"
+                src="{{ $image_url }}"
+                class="w-full h-full object-cover rounded-full"
+                alt="Profile"
+            >
         </div>
 
         <p class="text-dark-gray group-hover:text-black transition-all">
