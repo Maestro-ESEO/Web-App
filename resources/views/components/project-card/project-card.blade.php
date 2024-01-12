@@ -21,7 +21,7 @@ $progression = $data['status'] == 200 ? $data['data'] : null;
 
 
 @if ($name != null and $deadline != null and $id != null)
-    <a href='{{$href}}' class="w-[24rem] h-56 flex flex-col justify-start items-start bg-gray-100 rounded-2xl shadow-project p-4 gap-3 hover:shadow-red transition-all cursor-pointer">
+    <a href="{{ $href }}" class="w-[24rem] h-56 flex flex-col justify-start items-start bg-gray-100 rounded-2xl shadow-project p-4 gap-3 hover:shadow-red transition-all cursor-pointer">
         <p class="font-bold text-black text-xl">{{$name}}</p>
         <p class="text-dark-gray text-sm min-h-10 line-clamp-2">{{$description}}</p>
 
