@@ -31,8 +31,11 @@ class ProjectController extends Controller
 
     public function index(): JsonResponse
     {
-        // Get all projects and respond with JSON (status, message and data)
         $projects = Project::all();
+        $user = AuthUtil::getAuthUser();
+        $projects = $projects->filter(function ($value, $key) use ($user) {
+            return UserProject::where('project_id', $value->id)->where('user_id', $user->id)->get()->count();
+        });
         return response()->json([
             'status' => '200',
             'message' => 'Projects found successfully',
