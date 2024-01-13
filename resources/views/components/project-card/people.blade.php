@@ -17,9 +17,13 @@ if ($id != null) {
         $moreCircles = true;
     }
 
+    $namesArray = [];
     if($moreCircles) {
         $next_users =$users->slice(3);
-        $namesString = "+ " . implode(', ', $next_users->pluck('first_name')->toArray());
+        foreach ($next_users as $user) {
+            $namesArray[] = $user['first_name'] . ' ' . $user['last_name'];
+        }
+        $namesString = '+ ' . implode(', ', $namesArray);
     }else{
     
     }
