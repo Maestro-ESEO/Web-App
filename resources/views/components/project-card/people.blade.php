@@ -1,4 +1,5 @@
-@props(['id' => null])
+@props(['id' => null,
+        'nbDisplayed' => 4])
 
 @php
 use App\Models\UserProject;
@@ -12,8 +13,8 @@ if ($id != null) {
     $displayedCircles = $users->count();
     $moreCircles = false;
 
-    if ($displayedCircles > 4) {
-        $displayedCircles = 3;
+    if ($displayedCircles > $nbDisplayed) {
+        $displayedCircles = $nbDisplayed - 1;
         $moreCircles = true;
     }
 
