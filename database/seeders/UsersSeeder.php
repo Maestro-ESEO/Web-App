@@ -17,7 +17,8 @@ class UsersSeeder extends Seeder
             "last_name" => "Doe",
             "email" => "john.doe@maestro.com",
             "password" => "Password1+",
+            "profile_photo_path" => "https://img.freepik.com/vecteurs-premium/illustration-conception-logo-icone-agent-secret_586739-409.jpg"
         ]);
-        User::factory()->count(20)->create();
+        User::factory()->count(50)->create();
     }
 }

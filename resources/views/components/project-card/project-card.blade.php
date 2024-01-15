@@ -12,10 +12,7 @@
 use App\Http\Controllers\ProjectController;
 
 $date = strtotime($deadline);
-
-$controller = app(ProjectController::class);
-$data = json_decode($controller->getProgression($id)->getContent(), true);
-$progression = $data['status'] == 200 ? $data['data'] : null;
+$progression = app(ProjectController::class)->getProgression($id);
 
 @endphp
 
@@ -29,11 +26,15 @@ $progression = $data['status'] == 200 ? $data['data'] : null;
         <x-ui.divider />
 
         <div class="w-full flex justify-start items-center gap-3">
-            <x-project-card.people id="{{$id}}" nbDisplayed=4 />
-            <div class="flex flex-col flex-1 justify-center items-start">
-                <p class="text-sm text-dark-gray">{{$progression['tasks_unfinished']}} tasks left</p>
-                <x-project-card.progress progress="{{$progression['progression']}}" />
-            </div>
+            <x-project-card.people
+                id="{{$id}}"
+                nbDisplayed=4
+            />
+
+            <x-project-card.task-info
+                percent="{{ $progression['percent'] }}"
+                tasksUnfinished="{{ $progression['tasks_unfinished'] }}"
+            />
         </div>
     </a>
 @endif

@@ -2,7 +2,7 @@
 
 $user = Auth::user();
 $name = $user->first_name . ' ' . $user->last_name;
-$image_url = $user->profile_photo_url ?? asset("profile_placeholder.png");
+$image_url = $user->profile_photo_path ?? asset("profile_placeholder.png");
 
 @endphp
 

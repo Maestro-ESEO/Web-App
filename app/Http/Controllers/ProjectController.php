@@ -50,27 +50,21 @@ class ProjectController extends Controller
         return (bool) count($taskProject);
     }
 
-    public function getProgression(String $id): JsonResponse
+    public function getProgression(String $id): array
     {
         $tasks = Task::where("project_id", $id)->get();
+
         $tasks_completed = $tasks->filter(function ($value, $key) {
             return $value->status == 3;
         })->count();
         $tasks_unfinished = $tasks->count() - $tasks_completed;
-        if ($tasks->count() == 0) {
-            $progression = 0;
-        } else {
-            $progression = round($tasks_completed / $tasks->count() * 100);
-        }
 
-        return response()->json([
-            "status" => 200,
-            "message" => "Tasks found successfully",
-            "data" => [
-                "tasks_completed" => $tasks_completed,
-                "tasks_unfinished" => $tasks_unfinished,
-                "progression" => $progression,
-            ],
-        ]);
+        $percent = $tasks->count() == 0 ? -1 : floor($tasks_completed / $tasks->count() * 100);
+
+        return [
+            "tasks_completed" => $tasks_completed,
+            "tasks_unfinished" => $tasks_unfinished,
+            "percent" => $percent,
+        ];
     }
 }
