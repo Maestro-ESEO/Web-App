@@ -67,4 +67,23 @@ class ProjectController extends Controller
             "percent" => $percent,
         ];
     }
+
+    public function getTasks(String $id): array {
+        $tasks = Task::where("project_id", $id)->get();
+
+        return [
+            "to_do" => $tasks->filter(function ($value, $key) {
+                return $value->status == 0;
+            }),
+            "in_progress" => $tasks->filter(function ($value, $key) {
+                return $value->status == 1;
+            }),
+            "in_revision" => $tasks->filter(function ($value, $key) {
+                return $value->status == 2;
+            }),
+            "done" => $tasks->filter(function ($value, $key) {
+                return $value->status == 3;
+            })
+        ];
+    }
 }
