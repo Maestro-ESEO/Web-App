@@ -69,7 +69,7 @@ class ProjectController extends Controller
     }
 
     public function getTasks(String $id): array {
-        $tasks = Task::where("project_id", $id)->get();
+        $tasks = Task::where("project_id", $id)->orderByDesc("priority")->get();
 
         return [
             "to_do" => $tasks->filter(function ($value, $key) {

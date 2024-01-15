@@ -4,8 +4,11 @@
 @section("content")
 
 @php
+use App\Http\Controllers\ProjectController;
 $deadline = strtotime($project->end_date);
 $creation = strtotime($project->created_at);
+
+$tasks = app(ProjectController::class)->getTasks($project->id);
 
 @endphp
 
@@ -26,10 +29,10 @@ $creation = strtotime($project->created_at);
         </div>
     </div>
     <div class="w-full flex justify-start items-start bg-gray-100 rounded-2xl py-5 px-4 mt-3">
-        <x-kanban.column color="cyan-600">To do </x-kanban.column>
-        <x-kanban.column color="orange-600">In progress</x-kanban.column>
-        <x-kanban.column color="purple-600">In revision</x-kanban.column>
-        <x-kanban.column color="green-600">Completed</x-kanban.column>
+        <x-kanban.column color="cyan-600" :tasks="$tasks['to_do']">To do </x-kanban.column>
+        <x-kanban.column color="orange-600" :tasks="$tasks['in_progress']">In progress</x-kanban.column>
+        <x-kanban.column color="purple-600" :tasks="$tasks['in_revision']">In revision</x-kanban.column>
+        <x-kanban.column color="green-600" :tasks="$tasks['done']">Completed</x-kanban.column>
     </div>
 </div>
 

@@ -13,14 +13,16 @@
             $color="bg-grey-600";
             break;
     }
+
+    $deadline = strtotime($date);
 @endphp
 
 <div class="w-full flex flex-row justify-between items-center px-4 py-2 bg-white rounded-xl">
-    <div class="flex flex-col justify-start items-start">
+    <div class="flex flex-1 flex-col justify-start items-start">
         <p class="font-semibold text-sm line-clamp-1">{{$title}}</p>
         <div class="flex justify-start items-center text-dark-gray gap-1">
             <x-icons.deadline size="16" />
-            <p class="text-xs inline-block">{{$date}}</p>
+            <p class="text-xs inline-block">{{date('M. d, Y', $deadline)}}</p>
         </div>
     </div>
     <div class="h-4 w-4 rounded-full {{$color}}"></div>
