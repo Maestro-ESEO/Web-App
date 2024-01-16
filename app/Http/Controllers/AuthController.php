@@ -6,18 +6,19 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller {
 
-    public function show_login(): View {
+    public function show_login(): View | RedirectResponse {
         if (Auth::check()) {
             return redirect()->route('dashboard');
         }
         return view('auth.login');
     }
 
-    public function show_register(): View {
+    public function show_register(): View | RedirectResponse {
         if (Auth::check()) {
             return redirect()->route('dashboard');
         }
@@ -26,13 +27,15 @@ class AuthController extends Controller {
 
     public function login(LoginRequest $request) {
         $credentials = $request->validated();
-
-        if (!Auth::attempt($credentials)) {
+        
+        $user = User::where('email', $credentials['email'])->first();
+        if (!$user || $user->password != $credentials['password']) {
             return to_route('auth.login')->withErrors([
                 "email" => "L'adresse email ou le mot de passe est incorrect.",
             ])->onlyInput('email');
         }
-        
+
+        Auth::login($user);
         session()->regenerate();
         return redirect()->intended(route('dashboard'));
     }

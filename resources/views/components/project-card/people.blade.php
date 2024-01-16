@@ -1,7 +1,10 @@
-@props(['id' => null,
-        'nbDisplayed' => 4])
+@props([
+    'id' => null,
+    'nbDisplayed' => 4
+])
 
 @php
+
 use App\Models\UserProject;
 use App\Models\User;
 
@@ -20,15 +23,14 @@ if ($id != null) {
 
     $namesArray = [];
     if($moreCircles) {
-        $next_users =$users->slice(3);
+        $next_users =$users->slice($displayedCircles);
         foreach ($next_users as $user) {
             $namesArray[] = $user['first_name'] . ' ' . $user['last_name'];
         }
         $namesString = '+ ' . implode(', ', $namesArray);
-    }else{
-    
     }
 }
+
 @endphp
 
 @if($id != null)
@@ -45,8 +47,8 @@ if ($id != null) {
         @endforeach
 
         @if($moreCircles) 
-            <div class="h-9 w-9 -ml-3 rounded-full flex items-center justify-center bg-gray-300 text-sm relative inline-block group">+{{($users->count())-3}}
-            <x-ui.tooltip text="{{$namesString}}"/>
+            <div class="h-9 w-9 -ml-3 rounded-full flex items-center justify-center bg-gray-300 text-sm relative inline-block group">+{{($users->count())-$displayedCircles}}
+                <x-ui.tooltip text="{{$namesString}}"/>
             </div>
         @endif
     </div>
