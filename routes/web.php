@@ -17,8 +17,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProjectController;
 
-Route::get("/login", [AuthController::class, "login_view"])->name("auth.login");
-Route::get("/register", [AuthController::class, "register_view"])->name("auth.register");
+Route::get("/login", [AuthController::class, "show_login"])->name("auth.login");
+Route::get("/register", [AuthController::class, "show_register"])->name("auth.register");
 
 Route::post("/login", [AuthController::class, "login"])->name("auth.login");
 Route::post("/register", [AuthController::class, "register"])->name("auth.register");

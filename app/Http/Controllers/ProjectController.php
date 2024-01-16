@@ -9,8 +9,8 @@ use App\Models\User;
 use App\Utils\AuthUtil;
 use Illuminate\Http\JsonResponse;
 
-class ProjectController extends Controller
-{
+class ProjectController extends Controller {
+    
     public function show($id) {
         $user = AuthUtil::getAuthUser();
         $project = Project::all()->find($id);

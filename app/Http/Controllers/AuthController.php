@@ -8,16 +8,16 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class AuthController extends Controller
-{
-    public function login_view() {
+class AuthController extends Controller {
+
+    public function show_login() {
         if (Auth::check()) {
             return redirect()->route('dashboard');
         }
         return view('auth.login');
     }
 
-    public function register_view() {
+    public function show_register() {
         if (Auth::check()) {
             return redirect()->route('dashboard');
         }
@@ -49,7 +49,7 @@ class AuthController extends Controller
             'first_name' => $credentials['first_name'],
             'last_name' => $credentials['last_name'],
             'email' => $credentials['email'],
-            'password' => Hash::make($credentials['password']),
+            'password' => $credentials['password'],
         ]);
         if ($user == null) {
             return to_route('auth.register')->withErrors([

@@ -1,6 +1,6 @@
 @php
 
-$tasks_text = $tasksUnfinished . " tasks left";
+$tasks_text = $tasksUnfinished . " task" . ($tasksUnfinished > 1 ? "s" : "") . " left";
 if ($percent == -1) {
     $tasks_text = "No tasks yet";
 }
