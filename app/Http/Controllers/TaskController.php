@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\Task;
@@ -75,6 +76,13 @@ class TaskController extends Controller
             "user" => $user
         ]);
     }
+
+    public function getComments($id){
+        $comments = Comment::where("task_id", $id)->orderByDesc("created_at")->get();
+
+        return $comments;
+    }
+
 
     public function delete(Request $request)
     {
