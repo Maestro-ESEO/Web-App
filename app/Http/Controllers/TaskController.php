@@ -31,7 +31,7 @@ class TaskController extends Controller
         $task->priority = $request->priority;
         $task->project_id = $request->project_id;
         // User admin of the project ?
-        $is_admin = ProjectController::isAdmin(Project::find($request->project_id), AuthUtil::getAuthUser());
+        $is_admin = app(ProjectController::class)->isAdmin(Project::find($request->project_id)->id, AuthUtil::getAuthUser()->id);
         if ($is_admin != true) {
             return response()->json([
                 'status' => 404,
@@ -66,7 +66,7 @@ class TaskController extends Controller
             return redirect()->back();
         }
 
-        $is_admin = ProjectController::isAdmin($project, $user);
+        $is_admin = app(ProjectController::class)->isAdmin($project->id, $user->id);
 
         return view("app.task", [
             "project" => $project,
