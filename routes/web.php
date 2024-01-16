@@ -18,6 +18,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TaskController;
 
 
 Route::get("/login", [AuthController::class, "show_login"])->name("auth.login");
@@ -31,3 +32,4 @@ Route::redirect("/", "/dashboard");
 Route::get("/dashboard", [DashboardController::class, "show"])->name("dashboard")->middleware("auth");
 Route::get("/profile", [UserController::class, "show"])->name("profile")->middleware("auth");
 Route::get("/project/{id}", [ProjectController::class, "show"])->name("project")->middleware("auth");
+Route::get("/task/{id}", [TaskController::class, "show"])->name("task")->middleware("auth");

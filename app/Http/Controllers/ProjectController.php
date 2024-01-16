@@ -15,7 +15,7 @@ class ProjectController extends Controller {
         $project = Project::all()->find($id);
 
         if (!$project or !UserProject::where("project_id", $project->id)->where("user_id", $user->id)->get()->count()) {
-            return redirect()->route("dashboard");
+            return redirect()->back();
         }
 
         $is_admin = app(ProjectController::class)->isAdmin($project->id, $user->id);
