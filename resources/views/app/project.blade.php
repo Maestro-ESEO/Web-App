@@ -23,10 +23,6 @@ $tasks = app(ProjectController::class)->getTasks($project->id);
                 <x-project-card.date type="deadline" date="{{date('M. d, Y',$deadline)}}" />
             </div>
         </div>
-        <div class="flex justify-center items-center">
-            <button class="rounded-xl px-3 py-2 bg-red text-sm text-white font-bold shadow-btn flex flex-nowrap gap-2 justify-center items-center">
-                <x-icons.edit size=16 />Edit Project</button>
-        </div>
     </div>
     <div class="w-full flex justify-start items-start bg-gray-100 rounded-2xl py-5 px-4 mt-3">
         <x-kanban.column color="cyan-600" :tasks="$tasks['to_do']">To do </x-kanban.column>
