@@ -2,9 +2,7 @@
 
 use App\Http\Controllers\ProjectController;
 
-$jsonData = app(ProjectController::class)->index()->getContent();
-$data = json_decode($jsonData, true);
-$projects = $data["status"] == 200 ? $data["data"] : null;
+$projects = app(ProjectController::class)->index();
 
 @endphp
 

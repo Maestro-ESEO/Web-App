@@ -5,13 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Models\Task;
 use App\Models\UserProject;
-use App\Models\User;
 use App\Utils\AuthUtil;
-use Illuminate\Http\JsonResponse;
+use Illuminate\Contracts\View\View;
 
 class ProjectController extends Controller {
     
-    public function show($id) {
+    public function show($id): View {
         $user = AuthUtil::getAuthUser();
         $project = Project::all()->find($id);
 
@@ -19,7 +18,7 @@ class ProjectController extends Controller {
             return redirect()->route("dashboard");
         }
 
-        $is_admin = ProjectController::isAdmin($project, $user);
+        $is_admin = app(ProjectController::class)->isAdmin($project->id, $user->id);
 
         return view("app.project", [
             "project" => $project,
@@ -27,31 +26,26 @@ class ProjectController extends Controller {
         ]);
     }
 
-    public function index(): JsonResponse {
+    public function index(): array {
         $projects = Project::all();
         $user = AuthUtil::getAuthUser();
         $projects = $projects->filter(function ($value, $key) use ($user) {
             return UserProject::where("project_id", $value->id)->where("user_id", $user->id)->get()->count();
         });
 
-        return response()->json([
-            "status" => "200",
-            "message" => "Projects found successfully",
-            "data" => $projects,
-        ]);
+        return $projects->toArray();
     }
 
-    public static function isAdmin(Project $project, User $user): bool {
-        $taskProject = UserProject::where("project_id", $project->id)
-            ->where("user_id", $user->id)
-            ->where("is_admin", true)
+    public function isAdmin(int $projectId, int $userId): bool {
+        $taskProject = UserProject::where("is_admin", true)
+            ->where("project_id", $projectId)
+            ->where("user_id", $userId)
             ->get();
 
         return (bool) count($taskProject);
     }
 
-    public function getProgression(String $id): array
-    {
+    public function getProgression(String $id): array {
         $tasks = Task::where("project_id", $id)->get();
 
         $tasks_completed = $tasks->filter(function ($value, $key) {
@@ -86,4 +80,5 @@ class ProjectController extends Controller {
             })
         ];
     }
+
 }

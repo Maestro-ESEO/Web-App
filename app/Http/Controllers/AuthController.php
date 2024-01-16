@@ -5,19 +5,19 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller {
 
-    public function show_login() {
+    public function show_login(): View {
         if (Auth::check()) {
             return redirect()->route('dashboard');
         }
         return view('auth.login');
     }
 
-    public function show_register() {
+    public function show_register(): View {
         if (Auth::check()) {
             return redirect()->route('dashboard');
         }

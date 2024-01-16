@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 
-class UserController extends Controller {
+class DashboardController extends Controller {
 
     public function show(): View {
-        return view('app.profile');
+        return view('app.dashboard');
     }
 
 }

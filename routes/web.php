@@ -13,9 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProjectController;
+
 
 Route::get("/login", [AuthController::class, "show_login"])->name("auth.login");
 Route::get("/register", [AuthController::class, "show_register"])->name("auth.register");
@@ -25,6 +28,6 @@ Route::post("/register", [AuthController::class, "register"])->name("auth.regist
 Route::post("/logout", [AuthController::class, "logout"])->name("auth.logout");
 
 Route::redirect("/", "/dashboard");
-Route::get("/dashboard", [UserController::class, "dashboard"])->name("dashboard")->middleware("auth");
-Route::get("/profile", [UserController::class, "profile"])->name("profile")->middleware("auth");
+Route::get("/dashboard", [DashboardController::class, "show"])->name("dashboard")->middleware("auth");
+Route::get("/profile", [UserController::class, "show"])->name("profile")->middleware("auth");
 Route::get("/project/{id}", [ProjectController::class, "show"])->name("project")->middleware("auth");
