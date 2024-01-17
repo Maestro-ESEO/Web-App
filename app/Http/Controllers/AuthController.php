@@ -11,14 +11,14 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller {
 
-    public function show_login(): View | RedirectResponse {
+    public function show_login() {
         if (Auth::check()) {
             return redirect()->route('dashboard');
         }
         return view('auth.login');
     }
 
-    public function show_register(): View | RedirectResponse {
+    public function show_register() {
         if (Auth::check()) {
             return redirect()->route('dashboard');
         }
