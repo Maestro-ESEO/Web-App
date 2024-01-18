@@ -40,6 +40,7 @@ if ($id != null) {
                 stylecss="object-scale-down -ml-3"
                 url="{{$user['profile_photo_path'] ?? asset('profile_placeholder.png')}}"
                 name="{{$user['first_name']}} {{$user['last_name']}}"
+                tooltip
             />
             @if ($loop->iteration == $displayedCircles)
                 @break
