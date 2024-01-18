@@ -8,7 +8,10 @@
 use App\Http\Controllers\TaskController;
 $deadline = strtotime($task->deadline);
 $comments = app(TaskController::class)->getComments($task->id);
+
 @endphp
+
+
 <div class="w-full h-full flex flex-col justify-start py-14 px-16 gap-4">
     <div class="w-full flex justify-start items-center">
         <div class="flex flex-col justify-start items-start gap-2">
