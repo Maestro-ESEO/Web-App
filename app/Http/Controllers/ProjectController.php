@@ -6,11 +6,10 @@ use App\Models\Project;
 use App\Models\Task;
 use App\Models\UserProject;
 use App\Utils\AuthUtil;
-use Illuminate\Contracts\View\View;
 
 class ProjectController extends Controller {
     
-    public function show($id): View {
+    public function show($id) {
         $user = AuthUtil::getAuthUser();
         $project = Project::all()->find($id);
 
