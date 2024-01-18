@@ -14,7 +14,7 @@ $comments = app(TaskController::class)->getComments($task->id);
         <div class="flex flex-col justify-start items-start gap-2">
             <div class="flex justify-start items-center gap-2">
                 <x-icons.task size="36" />
-                <x-ui.title>{{$task->name}}</x-ui.title>
+                <x-ui.title>Task: {{$task->name}}</x-ui.title>
             </div>
             <p class="text-sm text-dark-gray">{{$task->description}}</p>
             <div class="flex justify-start items-center gap-3">
