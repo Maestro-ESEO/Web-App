@@ -15,7 +15,10 @@ $tasks = app(ProjectController::class)->getTasks($project->id);
 <div class="w-full h-full flex flex-col justify-start py-14 px-16 gap-4">
     <div class="w-full flex justify-between items-center">
         <div class="flex flex-col justify-start items-start gap-2">
-            <x-ui.title>{{$project->name}}</x-ui.title>
+            <div class="flex justify-start items-center gap-2">
+                <x-icons.project size="36" />
+                <x-ui.title>{{$project->name}}</x-ui.title>
+            </div>
             <p class="text-sm text-dark-gray">{{$project->description}}</p>
             <div class="flex justify-start items-center gap-3">
                 <x-project-card.people id="{{$project->id}}" nbDisplayed=10 />
