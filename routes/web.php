@@ -28,6 +28,9 @@ Route::post("/login", [AuthController::class, "login"])->name("auth.login");
 Route::post("/register", [AuthController::class, "register"])->name("auth.register");
 Route::post("/logout", [AuthController::class, "logout"])->name("auth.logout");
 
+Route::get("/profile/edit", [UserController::class, "edit"])->name("profile.edit")->middleware("auth");
+Route::post("/profile", [UserController::class, "update"])->name("profile.update")->middleware("auth");
+
 Route::redirect("/", "/dashboard");
 Route::get("/dashboard", [DashboardController::class, "show"])->name("dashboard")->middleware("auth");
 Route::get("/profile", [UserController::class, "show"])->name("profile")->middleware("auth");

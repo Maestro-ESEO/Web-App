@@ -4,13 +4,12 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LoginRequest extends FormRequest
-{
+class LoginRequest extends FormRequest {
+    
     /**
      * Determine if the user is authorized to make this request.
      */
-    public function authorize(): bool
-    {
+    public function authorize(): bool {
         return true;
     }
 
@@ -19,8 +18,7 @@ class LoginRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
-    {
+    public function rules(): array {
         return [
             "email" => ["required", "email"],
             "password" => ["required", "min:". RegisterRequest::$minPasswordLength, "regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/"],
@@ -32,14 +30,13 @@ class LoginRequest extends FormRequest
      *
      * @return array<string, string>
      */
-    public function messages(): array
-    {
+    public function messages(): array {
         return [
-            "email.required" => "L'adresse email est requise.",
-            "email.email" => "L'adresse email n'est pas valide.",
-            "password.required" => "Le mot de passe est requis.",
-            "password.min" => "Le mot de passe doit contenir au moins ". RegisterRequest::$minPasswordLength ." caractères dont une minuscule, une majuscule et un chiffre.",
-            "password.regex" => "Le mot de passe doit contenir au moins ". RegisterRequest::$minPasswordLength ." caractères dont une minuscule, une majuscule et un chiffre.",
+            "email.required" => "The email address is required.",
+            "email.email" => "The email address is not valid.",
+            "password.required" => "The password is required.",
+            "password.min" => "The password must be at least " . RegisterRequest::$minPasswordLength . " characters long and contain at least one lowercase letter, one uppercase letter, and one digit.",
+            "password.regex" => "The password must be at least " . RegisterRequest::$minPasswordLength . " characters long and contain at least one lowercase letter, one uppercase letter, and one digit.",
         ];
     }
 }
