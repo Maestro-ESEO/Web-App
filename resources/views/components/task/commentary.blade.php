@@ -7,7 +7,7 @@
 
 <div class="w-[38rem] flex flex-col justify-start items-start bg-gray-100  rounded-xl p-4 min-h-24 gap-3">
     <div class="flex justify-start items-center gap-2">
-        <x-project-card.circle name="{{$full_name}}" url="{{$comment->user->profile_photo_path}}" />
+        <x-project-card.circle name="{{$full_name}}" url="{{$comment->user->profile_photo_path}}"/>
         <div class="flex flex-col justify-start items-start">
             <div class="flex justify-start items-center gap-1">
                 @if($is_admin)
