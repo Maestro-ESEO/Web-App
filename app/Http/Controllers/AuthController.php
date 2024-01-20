@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
-use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller {
@@ -30,8 +28,8 @@ class AuthController extends Controller {
         
         $user = User::where('email', $credentials['email'])->first();
         if (!$user || $user->password != $credentials['password']) {
-            return to_route('auth.login')->withErrors([
-                "email" => "L'adresse email ou le mot de passe est incorrect.",
+            return redirect(route('auth.login'))->withErrors([
+                "email" => "The email or password is incorrect.",
             ])->onlyInput('email');
         }
 
@@ -44,8 +42,8 @@ class AuthController extends Controller {
         $credentials = $request->validated();
 
         if (User::where('email', $credentials['email'])->exists()) {
-            return to_route('auth.register')->withErrors([
-                "email" => "L'adresse email est déjà utilisée.",
+            return redirect(route('auth.register'))->withErrors([
+                "email" => "The email is already taken.",
             ])->onlyInput('email');
         }
         $user = User::create([
@@ -55,8 +53,8 @@ class AuthController extends Controller {
             'password' => $credentials['password'],
         ]);
         if ($user == null) {
-            return to_route('auth.register')->withErrors([
-                'email' => "Une erreur est survenue lors de l'inscription.",
+            return redirect(route('auth.register'))->withErrors([
+                'email' => "An error occurred while creating the user.",
             ])->onlyInput('email');
         }
 
