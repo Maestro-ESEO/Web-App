@@ -30,7 +30,12 @@ $comments = app(TaskController::class)->getComments($task->id);
         <x-task.button selected="{{$task->status == 0 ? true : false}}" color="cyan-600">To Do</x-task.button>
         <x-task.button selected="{{$task->status == 1 ? true : false}}" color="orange-600">In progress</x-task.button>
         <x-task.button selected="{{$task->status == 2 ? true : false}}" color="purple-600">In revision</x-task.button>
-        <x-task.button selected="{{$task->status == 3 ? true : false}}" color="green-600">Completed</x-task.button>
+        <x-task.button selected="{{$task->status == 3 ? true : false}}" color="green-600" stylecss="cursor-not-allowed">
+            <div class="flex justify-center items-center gap-2">
+                <x-icons.lock size=16/>
+                <p>Completed</p>
+            </div>
+        </x-task.button>
     </div>
     <div class="flex flex-col gap-2 justify-start items-start mt-10">
         <p class="font-semibold">Commentaires :</p>
