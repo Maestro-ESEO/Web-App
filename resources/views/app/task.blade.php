@@ -21,16 +21,17 @@ $comments = app(TaskController::class)->getComments($task->id);
             </div>
             <p class="text-sm text-dark-gray">{{$task->description}}</p>
             <div class="flex justify-start items-center gap-3">
+                <x-project-card.date type="deadline" date="{{$project->name}}" />
                 <x-project-card.date type="deadline" date="{{date('M. d, Y',$deadline)}}" />
             </div>
         </div>
     </div>
 
     <div class="flex justify-start items-center gap-2">
-        <x-task.button selected="{{$task->status == 0 ? true : false}}" color="cyan-600">To Do</x-task.button>
-        <x-task.button selected="{{$task->status == 1 ? true : false}}" color="orange-600">In progress</x-task.button>
-        <x-task.button selected="{{$task->status == 2 ? true : false}}" color="purple-600">In revision</x-task.button>
-        <x-task.button selected="{{$task->status == 3 ? true : false}}" color="green-600" stylecss="cursor-not-allowed">
+        <x-task.button :task="$task" selected="{{$task->status == 0 ? true : false}}" color="cyan-600" status=0>To Do</x-task.button>
+        <x-task.button :task="$task" selected="{{$task->status == 1 ? true : false}}" color="orange-600" status=1>In progress</x-task.button>
+        <x-task.button :task="$task" selected="{{$task->status == 2 ? true : false}}" color="purple-600" status=2>In revision</x-task.button>
+        <x-task.button :task="$task" selected="{{$task->status == 3 ? true : false}}" color="green-600" status=3 stylecss="cursor-not-allowed pointer-events-none">
             <div class="flex justify-center items-center gap-2">
                 <x-icons.lock size=16/>
                 <p>Completed</p>

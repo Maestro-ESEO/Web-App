@@ -40,8 +40,16 @@ class TaskController extends Controller {
 
     public function updateStatus($id, $status) {
         $task = Task::find($id);
-        $task->status = $status;
-        $task->save();
+        $user = AuthUtil::getAuthUser();
+
+        if(!$task){
+            return redirect(route('dashboard'));
+        }
+        elseif(UserProject::where("project_id", $task->project->id)->where("user_id", $user->id)->get()->count()){
+            $task->status = $status;
+            $task->save();
+        }
+        return redirect()->back();
     }
 
     public function update(Request $request, $id): string

@@ -31,8 +31,15 @@ Route::post("/logout", [AuthController::class, "logout"])->name("auth.logout");
 Route::get("/profile/edit", [UserController::class, "edit"])->name("profile.edit")->middleware("auth");
 Route::post("/profile", [UserController::class, "update"])->name("profile.update")->middleware("auth");
 
+Route::get("/task/{id}", [TaskController::class, "show"])->name("task")->middleware("auth");
+Route::post('/task/{id}/update-status/{status}', [TaskController::class, 'updateStatus'])->name('update.status')->middleware("auth");
+
+
+
 Route::redirect("/", "/dashboard");
 Route::get("/dashboard", [DashboardController::class, "show"])->name("dashboard")->middleware("auth");
 Route::get("/profile", [UserController::class, "show"])->name("profile")->middleware("auth");
 Route::get("/project/{id}", [ProjectController::class, "show"])->name("project")->middleware("auth");
-Route::get("/task/{id}", [TaskController::class, "show"])->name("task")->middleware("auth");
+
+
+
