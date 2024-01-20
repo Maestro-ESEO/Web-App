@@ -18,9 +18,10 @@ class UserTaskFactory extends Factory
      */
     public function definition(): array
     {
+        $faker = $this->faker;
         return [
-            "user_id" => fake()->randomElement(User::all())->id,
-            "task_id" => fake()->randomElement(Task::all())->id,
+            "user_id" => $faker->randomElement(User::all())->id,
+            "task_id" => $faker->randomElement(Task::all())->id,
         ];
     }
 }

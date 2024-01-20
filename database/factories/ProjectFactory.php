@@ -16,11 +16,12 @@ class ProjectFactory extends Factory
      */
     public function definition(): array
     {
+        $faker = $this->faker;
         return [
-            'name' => ucfirst(fake()->word()),
-            'description' => fake()->sentence(10, true),
-            'start_date' => fake()->dateTimeBetween('-1 year', 'now'),
-            'end_date' => fake()->dateTimeBetween('now', '+1 year')
+            'name' => ucfirst($faker->word()),
+            'description' => $faker->sentence(10, true),
+            'start_date' => $faker->dateTimeBetween('-1 year', 'now'),
+            'end_date' => $faker->dateTimeBetween('now', '+1 year')
         ];
     }
 }

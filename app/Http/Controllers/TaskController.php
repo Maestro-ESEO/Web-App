@@ -15,9 +15,12 @@ class TaskController extends Controller {
     public function show($id) {
         $user = AuthUtil::getAuthUser();
         $task = Task::find($id);
+        if(!$task) {
+            return redirect()->back();
+        }
         $project = Project::all()->find($task->project_id);
 
-        if (!$task or !$project or !UserProject::where("project_id", $project->id)->where("user_id", $user->id)->get()->count()) {
+        if (!$project or !UserProject::where("project_id", $project->id)->where("user_id", $user->id)->get()->count()) {
             return redirect()->back();
         }
 

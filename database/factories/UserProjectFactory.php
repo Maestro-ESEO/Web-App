@@ -21,10 +21,11 @@ class UserProjectFactory extends Factory
     {
         $user_id = null;
         $project_id = null;
+        $faker = $this->faker;
 
         while (true) {
-            $user_id = fake()->randomElement(User::all())->id;
-            $project_id = fake()->randomElement(Project::all())->id;
+            $user_id = $faker->randomElement(User::all())->id;
+            $project_id = $faker->randomElement(Project::all())->id;
 
             if (!UserProject::where("user_id", $user_id)->where("project_id", $project_id)->exists()) {
                 break;
@@ -34,7 +35,7 @@ class UserProjectFactory extends Factory
         return [
             "user_id" => $user_id,
             "project_id" => $project_id,
-            "is_admin" => fake()->boolean(50),
+            "is_admin" => $faker->boolean(50),
         ];
     }
 }

@@ -13,7 +13,7 @@ class UserFactory extends Factory
     /**
      * The current password being used by the factory.
      */
-    protected static string $password = "Password1+";
+    protected static $password = "Password1+";
 
     /**
      * Define the model's default state.
@@ -21,13 +21,15 @@ class UserFactory extends Factory
      * @return array<string, mixed>
      */
     public function definition(): array
+
     {
+        $faker = $this->faker;
         return [
-            'first_name' => fake()->firstName(),
-            'last_name'=> fake()->lastName(),
-            'email' => fake()->unique()->safeEmail(),
+            'first_name' => $faker->firstName(),
+            'last_name'=> $faker->lastName(),
+            'email' => $faker->unique()->safeEmail(),
             'password' => static::$password,
-            'profile_photo_path' => fake()->imageUrl(480, 480, 'people', true)
+            'profile_photo_path' => $faker->imageUrl(480, 480, 'people', true)
         ];
     }
 

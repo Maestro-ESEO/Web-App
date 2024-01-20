@@ -12,7 +12,7 @@ use App\Models\Task;
  */
 class TaskFactory extends Factory
 {
-    protected static array $possibleTaskNames = [
+    protected static $possibleTaskNames = [
         "Rédiger un plan d'action",
         'Planifier la réunion avec les collaborateurs',
         'Convoquer Jean Yves',
@@ -21,7 +21,7 @@ class TaskFactory extends Factory
         "Installer Laravel"
     ];
 
-    protected static array $possibleTaskDescription = [
+    protected static $possibleTaskDescription = [
         "Il faut que nous avançions plus vite",
         'Les collaborateurs à prévenir sont : Jean Mich et Yves',
         'Il faut aussi préparer des arguments pour virer Jean Yves',
@@ -37,12 +37,13 @@ class TaskFactory extends Factory
      */
     public function definition(): array
     {
+        $faker = $this->faker;
         return [
-            'name' => fake()->randomElement(static::$possibleTaskNames),
-            'description' => fake()->randomElement(static::$possibleTaskDescription),
-            'deadline'=> fake()->dateTimeBetween('now','+3 months'),
-            'status' => fake()->numberBetween(0,3),
-            'priority' => fake()->numberBetween(0,2),
+            'name' => $faker->randomElement(static::$possibleTaskNames),
+            'description' => $faker->randomElement(static::$possibleTaskDescription),
+            'deadline'=> $faker->dateTimeBetween('now','+3 months'),
+            'status' => $faker->numberBetween(0,3),
+            'priority' => $faker->numberBetween(0,2),
             'project_id'=> Project::all()->random()->id
         ];
     }

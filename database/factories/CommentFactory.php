@@ -19,10 +19,11 @@ class CommentFactory extends Factory
      */
     public function definition(): array
     {
+        $faker = $this->faker;
         return [
-            "content" => fake()->sentence(10, true),
-            "user_id" => fake()->randomElement(User::all())->id,
-            "task_id" => fake()->randomElement(Task::all())->id
+            "content" => $faker->sentence(10, true),
+            "user_id" => $faker->randomElement(User::all())->id,
+            "task_id" => $faker->randomElement(Task::all())->id
         ];
     }
 }
