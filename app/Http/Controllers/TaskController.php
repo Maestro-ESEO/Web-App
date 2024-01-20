@@ -49,6 +49,7 @@ class TaskController extends Controller {
             $task->status = $status;
             $task->save();
         }
+
         return redirect()->back();
     }
 

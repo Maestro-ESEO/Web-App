@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,7 +35,7 @@ Route::post("/profile", [UserController::class, "update"])->name("profile.update
 Route::get("/task/{id}", [TaskController::class, "show"])->name("task")->middleware("auth");
 Route::post('/task/{id}/update-status/{status}', [TaskController::class, 'updateStatus'])->name('update.status')->middleware("auth");
 
-
+Route::post('/task/{id}/addComment',[CommentController::class,'store'])->name('comment.store')->middleware('auth');
 
 Route::redirect("/", "/dashboard");
 Route::get("/dashboard", [DashboardController::class, "show"])->name("dashboard")->middleware("auth");

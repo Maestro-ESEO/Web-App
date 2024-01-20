@@ -22,8 +22,8 @@ $tasks = app(ProjectController::class)->getTasks($project->id);
             <p class="text-sm text-dark-gray">{{$project->description}}</p>
             <div class="flex justify-start items-center gap-3">
                 <x-project-card.people id="{{$project->id}}" nbDisplayed=10 />
-                <x-project-card.date type="creation" date="{{date('M. d, Y',$creation)}}" />
-                <x-project-card.date type="deadline" date="{{date('M. d, Y',$deadline)}}" />
+                <x-ui.boxIcon type="creation" content="{{date('M. d, Y',$creation)}}" />
+                <x-ui.boxIcon type="deadline" content="{{date('M. d, Y',$deadline)}}" />
             </div>
         </div>
     </div>
