@@ -18,5 +18,7 @@
             <p class="text-xs text-dark-gray">{{$date}}</p>
         </div>
     </div>
-    <p class="text-sm">{{$comment->content}}</p>
+    <div class="text-sm">
+        {{$comment->content}}
+    </div>
 </div>
