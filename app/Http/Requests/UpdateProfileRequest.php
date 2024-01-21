@@ -29,7 +29,7 @@ class UpdateProfileRequest extends FormRequest {
             'email' => ['required', 'email'],
             'password' => ['required', 'min:'.self::$minPasswordLength, 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'],
             'password_confirm' => ['required', 'same:password'],
-            'image_url' => ['required', 'url', 'max:255'],
+            'image_url' => ['required', 'url', 'max:500'],
         ];
     }
 

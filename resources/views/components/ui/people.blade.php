@@ -48,7 +48,7 @@ if ($users != null) {
 
         @if($moreCircles) 
             <div class="h-9 w-9 -ml-3 rounded-full flex items-center justify-center bg-gray-300 text-sm relative inline-block group">+{{($users->count())-$displayedCircles}}
-                <x-ui.tooltip text="{{$namesString}}"/>
+                <x-ui.tooltip text="{{$namesString}}" bottom="2"/>
             </div>
         @endif
     </div>

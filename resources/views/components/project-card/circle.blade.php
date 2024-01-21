@@ -11,7 +11,7 @@
         <img draggable="false" src="{{$url}}" class="w-full h-full object-cover rounded-full" alt="Image">
     @endif
     @if($tooltip)
-        <x-ui.tooltip text="{{$name}}"/>
+        <x-ui.tooltip text="{{$name}}" bottom="2"/>
     @endif
     
 </div>
