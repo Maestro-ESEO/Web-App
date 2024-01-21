@@ -1,6 +1,7 @@
 @props([
     'priority' => null,
-    'color' => null
+    'color' => null,
+    'size' => 1,
 ])
 
 @php
@@ -30,7 +31,7 @@
 
 @if(isset($priority))
     <div class="relative inline-block group">
-        <div class="h-5 w-5 rounded-full {{$color}} "></div>
+        <div class="h-{{ $size }} w-{{ $size }} rounded-full {{$color}} "></div>
         <x-ui.tooltip text="{{$tooltip}}" bottom="1.5"/>
     </div>
 @endif

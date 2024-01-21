@@ -9,6 +9,7 @@ use App\Http\Controllers\TaskController;
 $deadline = strtotime($task->deadline);
 $comments = app(TaskController::class)->getComments($task->id);
 $users = app(TaskController::class)->getUsers($task->id);
+
 @endphp
 
 
@@ -16,7 +17,7 @@ $users = app(TaskController::class)->getUsers($task->id);
     <div class="w-full flex justify-start items-center">
         <div class="flex flex-col justify-start items-start gap-2">
             <div class="flex justify-start items-center gap-2">
-                <x-task.priority priority="{{$task->priority}}" />
+                <x-task.priority priority="{{$task->priority}}" size="5" />
                 <x-ui.title>{{$task->name}}</x-ui.title>
             </div>
             <p class="text-sm text-dark-gray">{{$task->description}}</p>

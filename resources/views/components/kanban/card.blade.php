@@ -26,7 +26,7 @@
         </div>
     </div>
     @if($status != 3)
-    <div class="h-4 w-4 rounded-full {{$color}}"></div>
+    <x-task.priority priority="{{$priority}}" size="4" />
     @else
     <div class="text-green-600">
         <x-icons.checked size="16" stroke="4"/>

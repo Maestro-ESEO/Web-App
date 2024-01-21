@@ -42,5 +42,6 @@ Route::get("/dashboard", [DashboardController::class, "show"])->name("dashboard"
 Route::get("/profile", [UserController::class, "show"])->name("profile")->middleware("auth");
 Route::get("/project/{id}", [ProjectController::class, "show"])->name("project")->middleware("auth");
 
-
-
+Route::fallback(function () {
+    return redirect("/");
+});
