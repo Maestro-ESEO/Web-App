@@ -21,8 +21,9 @@ $comments = app(TaskController::class)->getComments($task->id);
             </div>
             <p class="text-sm text-dark-gray">{{$task->description}}</p>
             <div class="flex justify-start items-center gap-3 mt-4">
-                <x-ui.boxIcon type="project" content="{{$project->name}}" />
+                <x-ui.boxIcon type="project" href="/project/{{$project->id}}" content="{{$project->name}}" />
                 <x-ui.boxIcon type="deadline" content="{{date('M. d, Y',$deadline)}}" />
+                <x-task.priority priority="{{$task->priority}}"/>
             </div>
         </div>
     </div>
