@@ -88,4 +88,13 @@ class ProjectController extends Controller {
         return $users;
     }
 
+    public function getAssignedProjectsCount() {
+        $user = AuthUtil::getAuthUser();
+        $projects = Project::all();
+        $projects = $projects->filter(function ($value, $key) use ($user) {
+            return UserProject::where("project_id", $value->id)->where("user_id", $user->id)->get()->count();
+        });
+        return $projects->count();
+    }
+
 }

@@ -87,4 +87,14 @@ class TaskController extends Controller {
             'data' => $task
         ]);
     }
+
+    public function getAssignedTasksCount() {
+        $user = AuthUtil::getAuthUser();
+        $tasks = Task::all();
+        $tasks = $tasks->filter(function ($value, $key) use ($user) {
+            return UserTask::where("task_id", $value->id)->where("user_id", $user->id)->get()->count();
+        });
+        return $tasks->count();
+    }
+
 }
