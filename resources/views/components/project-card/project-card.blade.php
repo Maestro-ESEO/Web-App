@@ -13,6 +13,7 @@ use App\Http\Controllers\ProjectController;
 
 $date = strtotime($deadline);
 $progression = app(ProjectController::class)->getProgression($id);
+$users = app(ProjectController::class)->getUsers($id);
 
 @endphp
 
@@ -26,8 +27,8 @@ $progression = app(ProjectController::class)->getProgression($id);
         <x-ui.divider />
 
         <div class="w-full flex justify-start items-center gap-3">
-            <x-project-card.people
-                id="{{$id}}"
+            <x-ui.people
+                :users="$users"
                 nbDisplayed=4
             />
 

@@ -1,6 +1,7 @@
 @props([
     'id' => null,
-    'nbDisplayed' => 4
+    'nbDisplayed' => 4,
+    'users' => null
 ])
 
 @php
@@ -8,10 +9,8 @@
 use App\Models\UserProject;
 use App\Models\User;
 
-if ($id != null) {
-    $usersProjects = UserProject::where('project_id', $id)->get();
-    $userIds = $usersProjects->pluck('user_id')->toArray();
-    $users = User::whereIn('id', $userIds)->get();
+
+if ($users != null) {
 
     $displayedCircles = $users->count();
     $moreCircles = false;
@@ -20,7 +19,7 @@ if ($id != null) {
         $displayedCircles = $nbDisplayed - 1;
         $moreCircles = true;
     }
-
+    
     $namesArray = [];
     if($moreCircles) {
         $next_users =$users->slice($displayedCircles);
@@ -33,7 +32,7 @@ if ($id != null) {
 
 @endphp
 
-@if($id != null)
+@if($users->count() != 0)
     <div class="flex justify-start items-center pl-3">
         @foreach ($users as $user)
             <x-project-card.circle

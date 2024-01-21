@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\Task;
+use App\Models\User;
 use App\Models\UserProject;
 use App\Utils\AuthUtil;
 
@@ -78,6 +79,13 @@ class ProjectController extends Controller {
                 return $value->status == 3;
             })
         ];
+    }
+
+    public function getUsers($id) {
+        $usersProjects = UserProject::where('project_id', $id)->get();
+        $userIds = $usersProjects->pluck('user_id')->toArray();
+        $users = User::whereIn('id', $userIds)->get();
+        return $users;
     }
 
 }

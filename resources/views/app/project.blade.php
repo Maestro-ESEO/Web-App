@@ -9,6 +9,7 @@ $deadline = strtotime($project->end_date);
 $creation = strtotime($project->created_at);
 
 $tasks = app(ProjectController::class)->getTasks($project->id);
+$users = app(ProjectController::class)->getUsers($project->id);
 
 @endphp
 
@@ -21,7 +22,7 @@ $tasks = app(ProjectController::class)->getTasks($project->id);
             </div>
             <p class="text-sm text-dark-gray">{{$project->description}}</p>
             <div class="flex justify-start items-center gap-3">
-                <x-project-card.people id="{{$project->id}}" nbDisplayed=10 />
+                <x-ui.people :users="$users" nbDisplayed=10 />
                 <x-ui.boxIcon type="creation" content="{{date('M. d, Y',$creation)}}" />
                 <x-ui.boxIcon type="deadline" content="{{date('M. d, Y',$deadline)}}" />
             </div>

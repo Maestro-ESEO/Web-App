@@ -8,7 +8,7 @@
 use App\Http\Controllers\TaskController;
 $deadline = strtotime($task->deadline);
 $comments = app(TaskController::class)->getComments($task->id);
-
+$users = app(TaskController::class)->getUsers($task->id);
 @endphp
 
 
@@ -16,14 +16,15 @@ $comments = app(TaskController::class)->getComments($task->id);
     <div class="w-full flex justify-start items-center">
         <div class="flex flex-col justify-start items-start gap-2">
             <div class="flex justify-start items-center gap-2">
-                <x-icons.task size="36" />
+                <x-task.priority priority="{{$task->priority}}" />
                 <x-ui.title>{{$task->name}}</x-ui.title>
             </div>
             <p class="text-sm text-dark-gray">{{$task->description}}</p>
             <div class="flex justify-start items-center gap-3 mt-4">
+                <x-ui.people :users="$users" />
                 <x-ui.boxIcon type="project" href="/project/{{$project->id}}" content="{{$project->name}}" />
-                <x-ui.boxIcon type="deadline" content="{{date('M. d, Y',$deadline)}}" />
-                <x-task.priority priority="{{$task->priority}}"/>
+                <x-ui.boxIcon type="deadline" content="{{date('M. d, Y',$deadline)}}"></x-ui.boxIcon>
+
             </div>
         </div>
     </div>
@@ -65,7 +66,7 @@ $comments = app(TaskController::class)->getComments($task->id);
     </div>
     <div class="flex w-[42rem] flex-col gap-2 justify-start items-start mt-4">
         <p class="font-semibold">Comments :</p>
-        <div class="w-full flex flex-col justify-start p-3 items-start gap-4">
+        <div class="w-full flex flex-col justify-start p-3 items-start gap-4 mb-10">
             @foreach ($comments as $comment)
             <x-task.commentary :comment="$comment"></x-task.commentary>
             @endforeach

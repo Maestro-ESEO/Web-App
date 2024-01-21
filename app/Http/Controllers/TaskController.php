@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\User;
+use App\Models\UserTask;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\Task;
@@ -36,6 +38,14 @@ class TaskController extends Controller {
 
     public function getComments($id){
         return Comment::where("task_id", $id)->orderByDesc("created_at")->get();
+    }
+
+    public function getUsers($id){
+        $usersTask = UserTask::where('task_id', $id)->get();
+        $userIds = $usersTask->pluck('user_id')->toArray();
+        $users = User::whereIn('id', $userIds)->get();
+
+        return $users;
     }
 
     public function updateStatus($id, $status) {
