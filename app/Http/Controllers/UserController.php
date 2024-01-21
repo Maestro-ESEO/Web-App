@@ -18,14 +18,11 @@ class UserController extends Controller {
 
     public function update(UpdateProfileRequest $request) {
         $credentials = $request->validated();
-
-        if (User::where('email', $credentials['email'])->exists()) {
-            return redirect(route('auth.register'))->withErrors([
-                "email" => "The email is already taken.",
-            ])->onlyInput('email');
-        }
-
+        
         $user = AuthUtil::getAuthUser();
+        if ($user->email != $credentials['email'] && User::where('email', $credentials['email'])->exists()) {
+            return redirect()->back()->withErrors(['email' => 'Email already taken']);
+        }
 
         $user->first_name = $credentials['first_name'];
         $user->last_name = $credentials['last_name'];
