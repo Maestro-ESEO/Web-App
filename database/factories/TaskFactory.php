@@ -38,13 +38,14 @@ class TaskFactory extends Factory
     public function definition(): array
     {
         $faker = $this->faker;
+        
         return [
             'name' => $faker->randomElement(static::$possibleTaskNames),
             'description' => $faker->randomElement(static::$possibleTaskDescription),
             'deadline'=> $faker->dateTimeBetween('now','+3 months'),
             'status' => $faker->numberBetween(0,3),
             'priority' => $faker->numberBetween(0,2),
-            'project_id'=> Project::all()->random()->id
+            'project_id'=> $faker->randomElement(Project::all())->id
         ];
     }
 }

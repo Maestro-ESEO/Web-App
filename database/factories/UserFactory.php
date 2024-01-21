@@ -21,9 +21,9 @@ class UserFactory extends Factory
      * @return array<string, mixed>
      */
     public function definition(): array
-
     {
         $faker = $this->faker;
+        
         return [
             'first_name' => $faker->firstName(),
             'last_name'=> $faker->lastName(),

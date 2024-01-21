@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\Project;
 use App\Models\Task;
 use App\Models\User;
+use App\Models\UserTask;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,10 +20,13 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         $faker = $this->faker;
+        
+        $userTask = $faker->randomElement(UserTask::all());
+
         return [
             "content" => $faker->sentence(10, true),
-            "user_id" => $faker->randomElement(User::all())->id,
-            "task_id" => $faker->randomElement(Task::all())->id
+            "user_id" => $userTask->user_id,
+            "task_id" => $userTask->task_id
         ];
     }
 }

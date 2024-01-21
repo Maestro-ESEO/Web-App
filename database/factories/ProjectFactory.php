@@ -17,6 +17,7 @@ class ProjectFactory extends Factory
     public function definition(): array
     {
         $faker = $this->faker;
+        
         return [
             'name' => ucfirst($faker->word()),
             'description' => $faker->sentence(10, true),

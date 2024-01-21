@@ -16,9 +16,9 @@ class DatabaseSeeder extends Seeder
             UsersSeeder::class,
             ProjectsSeeder::class,
             TasksSeeder::class,
-            CommentsSeeder::class,
-            UserTaskSeeder::class,
             UserProjectSeeder::class,
+            UserTaskSeeder::class,
+            CommentsSeeder::class,
         ]);
     }
 }

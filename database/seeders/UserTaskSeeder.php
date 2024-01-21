@@ -13,6 +13,6 @@ class UserTaskSeeder extends Seeder
      */
     public function run(): void
     {
-        UserTask::factory()->count(60)->create();
+        UserTask::factory()->count(200)->create();
     }
 }

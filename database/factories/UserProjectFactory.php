@@ -19,9 +19,10 @@ class UserProjectFactory extends Factory
      */
     public function definition(): array
     {
+        $faker = $this->faker;
+
         $user_id = null;
         $project_id = null;
-        $faker = $this->faker;
 
         while (true) {
             $user_id = $faker->randomElement(User::all())->id;
