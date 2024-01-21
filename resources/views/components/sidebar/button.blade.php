@@ -6,7 +6,17 @@
 
 @php
 
+use App\Models\Task;
+
 $selected = request()->path() == $href;
+
+// Check if task is in the url
+if (str_contains(request()->path(), 'task') && request()->route()->hasParameter('id')) {
+    $task = Task::find(request()->route()->parameter('id'));
+    if ($href == "project/".$task->project_id) {
+        $selected = true;
+    }
+}
 
 @endphp
 
