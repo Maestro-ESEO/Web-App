@@ -47,6 +47,9 @@ $comments = app(TaskController::class)->getComments($task->id);
                     <textarea class="w-full outline-none bg-gray-100 min-h-25 resize-none rounded-2xl p-2 " id="content" name="content" rows="3" placeholder="Write your comment here..."></textarea>
                 
                     <div class="flex flex-row justify-end items-center">
+                    @error("content")
+                        {{ $message }}
+                    @enderror
                         <button class="bg-red rounded-xl px-4 py-1 font-semibold text-white">
                             <div class="flex justify-center items-center gap-2">
                                 <x-icons.send size=20/>
@@ -61,7 +64,7 @@ $comments = app(TaskController::class)->getComments($task->id);
     </div>
     <div class="flex w-[42rem] flex-col gap-2 justify-start items-start mt-4">
         <p class="font-semibold">Comments :</p>
-        <div class="w-full flex flex-col justify-start p-3 items-start gap-4 max-h-80 overflow-y-auto">
+        <div class="w-full flex flex-col justify-start p-3 items-start gap-4">
             @foreach ($comments as $comment)
             <x-task.commentary :comment="$comment"></x-task.commentary>
             @endforeach

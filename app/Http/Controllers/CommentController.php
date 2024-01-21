@@ -15,7 +15,7 @@ class CommentController extends Controller {
         $validatedData = $request->validate([
             'content' => 'required|string|max:500',
         ], [
-            'content.max' => 'La taille du commentaire ne doit pas dépasser :max caractères.',
+            'content.max' => 'The comment size must not exceed 500 characters.',
         ]);
         
         $user = AuthUtil::getAuthUser();
