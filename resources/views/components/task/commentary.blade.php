@@ -19,6 +19,6 @@
         </div>
     </div>
     <div class="text-sm">
-        {{$comment->content}}
+       <p class="break-all">{{$comment->content}}</p> 
     </div>
 </div>
