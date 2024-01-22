@@ -14,6 +14,7 @@ composer install
 
 ## Configuration de la base de données
 
+Copier le fichier `.env.example` et renommer la copie `.env`.
 Renseigner les identifiants de connexion à la base de données dans le fichier `.env`, qui contient les variables d'environnement du projet.
 ```
 DB_CONNECTION=mysql
