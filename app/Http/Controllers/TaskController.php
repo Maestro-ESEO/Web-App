@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\User;
 use App\Models\UserTask;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Models\Project;
@@ -63,8 +62,7 @@ class TaskController extends Controller {
         return redirect()->back();
     }
 
-    public function update(Request $request, $id): string
-    {
+    public function update(Request $request, $id): string {
         $request->validate([
             'name' => 'string|nullable',
             'description' => 'string|nullable',

@@ -18,7 +18,7 @@ class ProjectController extends Controller {
             return redirect()->back();
         }
 
-        $is_admin = app(ProjectController::class)->isAdmin($project->id, $user->id);
+        $is_admin = $this->isAdmin($project->id, $user->id);
 
         return view("app.project", [
             "project" => $project,

@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Utils\AuthUtil;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use App\Models\Comment;
-class CommentController extends Controller {
-    // ...
 
-    public function store(Request $request, $id)
-    {
+class CommentController extends Controller {
+
+    public function store(Request $request, $id) {
         // Validate the request data
         $validatedData = $request->validate([
             'content' => 'required|string|max:500',
@@ -32,4 +30,5 @@ class CommentController extends Controller {
         // Redirect or return a response
         return redirect()->back();
     }
+
 }

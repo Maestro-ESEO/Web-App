@@ -24,6 +24,6 @@ class UserProjectSeeder extends Seeder
                 "is_admin" => true
             ]);
         }
-        UserProject::factory()->count(200)->create();
+        UserProject::factory()->count(100)->create();
     }
 }
