@@ -16,18 +16,22 @@ class TaskFactory extends Factory
         "Rédiger un plan d'action",
         'Planifier la réunion avec les collaborateurs',
         'Convoquer Jean Yves',
-        'Virer Camille du projet',
+        "Avancer le développement de l'application",
         "Déployer l'application",
-        "Installer Laravel"
+        "Installer Laravel",
+        "Utiliser Eloquent",
+        "Faire le cahier des charges",
+        "Virer Jean Yves"
     ];
 
     protected static $possibleTaskDescription = [
         "Il faut que nous avançions plus vite",
         'Les collaborateurs à prévenir sont : Jean Mich et Yves',
         'Il faut aussi préparer des arguments pour virer Jean Yves',
-        'Il faudrait la convoquer la semaine prochaine',
+        'Il faudrait convoquer l\'équipe la semaine prochaine',
         "L'application doit être terminée la semaine prochaine",
-        "Laravel version 1.0.0.0.2"
+        "Laravel version 1.0.0.0.2",
+        "C'est nécessaire de le faire correctement",
     ];
 
     /**
